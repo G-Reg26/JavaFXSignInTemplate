@@ -14,58 +14,62 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane alignment="center" hgap="10.0" prefHeight="400.0" prefWidth="600.0" styleClass="root" vgap="10.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.CreateAccountController">
+<GridPane alignment="center" hgap="10.0" prefHeight="400.0" prefWidth="600.0" styleClass="root"
+  vgap="10.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1"
+  fx:controller="sample.CreateAccountController">
   <Text id="welcome-text" text="Create Account" GridPane.columnSpan="2">
-      <font>
-         <Font name="System Bold" size="20.0" />
-      </font></Text>
-  <Label text="Name" GridPane.rowIndex="1" />
-  <Label text="User Name" GridPane.rowIndex="2" />
-  <Label text="Password" GridPane.rowIndex="3" />
-  <Label text="Confirm Password" GridPane.rowIndex="4" />
-  <TextField fx:id="name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-  <TextField fx:id="userName" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-  <PasswordField fx:id="password" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-  <PasswordField fx:id="confirmPassword" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+    <font>
+      <Font name="System Bold" size="20.0"/>
+    </font>
+  </Text>
+  <Label text="Name" GridPane.rowIndex="1"/>
+  <Label text="User Name" GridPane.rowIndex="2"/>
+  <Label text="Password" GridPane.rowIndex="3"/>
+  <Label text="Confirm Password" GridPane.rowIndex="4"/>
+  <TextField fx:id="name" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+  <TextField fx:id="userName" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+  <PasswordField fx:id="password" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+  <PasswordField fx:id="confirmPassword" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
   <HBox alignment="BOTTOM_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="8">
     <children>
-      <Button onAction="#handleSubmitButtonAction" text="Submit" />
+      <Button onAction="#handleSubmitButtonAction" text="Submit"/>
     </children>
   </HBox>
   <HBox alignment="BOTTOM_LEFT" GridPane.rowIndex="8">
     <children>
-      <Button onAction="#handleBackToSignInButtonAction" text="Back To Sign In" />
+      <Button onAction="#handleBackToSignInButtonAction" text="Back To Sign In"/>
     </children>
   </HBox>
-  <Text id="actiontarget" fx:id="actionTarget" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-   <Label text="Account Type" GridPane.rowIndex="5" />
-   <MenuButton fx:id="menuButton" mnemonicParsing="false" text="Account Type" GridPane.columnIndex="1" GridPane.rowIndex="5">
-     <items>
-       <MenuItem mnemonicParsing="false" onAction="#handleSpectatorMenuItem" text="Spectator" />
-         <MenuItem mnemonicParsing="false" onAction="#handlePlayerMenuItem" text="Player" />
-       <MenuItem mnemonicParsing="false" onAction="#handleManagerMenuItem" text="Manager" />
-     </items>
-   </MenuButton>
-   <Label text="Team Name" GridPane.rowIndex="6" />
-   <TextField fx:id="teamName" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+  <Text id="actiontarget" fx:id="actionTarget" GridPane.columnIndex="1" GridPane.rowIndex="10"/>
+  <Label text="Account Type" GridPane.rowIndex="5"/>
+  <MenuButton fx:id="menuButton" mnemonicParsing="false" text="Account Type"
+    GridPane.columnIndex="1" GridPane.rowIndex="5">
+    <items>
+      <MenuItem mnemonicParsing="false" onAction="#handleSpectatorMenuItem" text="Spectator"/>
+      <MenuItem mnemonicParsing="false" onAction="#handlePlayerMenuItem" text="Player"/>
+      <MenuItem mnemonicParsing="false" onAction="#handleManagerMenuItem" text="Manager"/>
+    </items>
+  </MenuButton>
+  <Label text="Team Name" GridPane.rowIndex="6"/>
+  <TextField fx:id="teamName" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
   <padding>
-    <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+    <Insets bottom="25.0" left="25.0" right="25.0" top="25.0"/>
   </padding>
-   <columnConstraints>
-      <ColumnConstraints hgrow="ALWAYS" />
-      <ColumnConstraints hgrow="ALWAYS" />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-   </rowConstraints>
+  <columnConstraints>
+    <ColumnConstraints hgrow="ALWAYS"/>
+    <ColumnConstraints hgrow="ALWAYS"/>
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints/>
+    <RowConstraints/>
+    <RowConstraints/>
+    <RowConstraints/>
+    <RowConstraints/>
+    <RowConstraints minHeight="10.0" prefHeight="30.0"/>
+    <RowConstraints minHeight="10.0" prefHeight="30.0"/>
+    <RowConstraints/>
+    <RowConstraints/>
+    <RowConstraints/>
+    <RowConstraints/>
+  </rowConstraints>
 </GridPane>

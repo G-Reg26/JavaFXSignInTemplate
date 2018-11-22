@@ -1,5 +1,16 @@
+/**
+ * The CreateAccountController class is the controller for the create account fxml file. This
+ * controller handles all the nodes and behaviors in the JavaFX scene. Users can create their
+ * account in this scene by filling in all text fields with the appropriate information.
+ *
+ * @author Gregorio Lozada
+ * @version 1.0
+ * @since 10/18/2018
+ */
+
 package sample;
 
+import java.util.Date;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuButton;
@@ -63,9 +74,6 @@ public class CreateAccountController extends Controller {
           //Notify user that password and confirm password do not match
           actionTarget.setText("Passwords do not match");
         }
-      } else {
-        //Notify user that username is already in use
-        actionTarget.setText("Username is already in use");
       }
     } else {
       //Notify user to fill all text and password textFields
@@ -137,14 +145,18 @@ public class CreateAccountController extends Controller {
    * @return false if the username is already taken, and true if the username is not taken
    */
   public boolean accountDoesNotExist() {
-    //IF there are already accounts made
-    if (Account.accounts.size() > 0) {
-      //Check all accounts
-      for (Account account : Account.accounts) {
-        //IF there is an account with entered username
-        if (account.getUsername().equals(userName.getText())) {
-          return false;
-        }
+    //If account exists
+    if (Account.findUserByName(userName.getText()) != null) {
+      actionTarget.setText("Username is already in use");
+      return false;
+    }
+
+    //If user is a manager
+    if (accountType == AccountType.MANAGER) {
+      //If team exists
+      if (Team.findTeamByName(teamName.getText()) != null) {
+        actionTarget.setText("Team name is already in use");
+        return false;
       }
     }
 
@@ -172,13 +184,13 @@ public class CreateAccountController extends Controller {
     switch (accountType) {
       case SPECTATOR:
         //Create account and add it to account list
-        Account.accounts
-            .add(new Account(name.getText(), userName.getText(), password.getText(), accountType));
+        Account.currentUser =
+            new Account(name.getText(), userName.getText(), password.getText(), accountType);
         break;
       case PLAYER:
         //Create account and add it to account list
-        Account.accounts
-            .add(new Player(name.getText(), userName.getText(), password.getText(), accountType));
+        Account.currentUser =
+            new Player(name.getText(), userName.getText(), password.getText(), accountType);
         break;
       case MANAGER:
         //Create team using the team name text field text
@@ -186,10 +198,22 @@ public class CreateAccountController extends Controller {
         //Add team to team list
         Team.teams.add(team);
         //Create account and add it to account list
-        Account.accounts
-            .add(new Manager(name.getText(), userName.getText(), password.getText(), accountType,
-                team));
+        Account.currentUser =
+            new Manager(name.getText(), userName.getText(), password.getText(), accountType, team);
+        //Create and add a new news object to news list
+        News tempNews = new News(
+            userName.getText() + " has just made a new team, the " + teamName.getText() + ".",
+            new Date());
+        News.newsList.add(tempNews);
         break;
+    }
+
+    Account.accounts.add(Account.currentUser);
+
+    try {
+      changeScene("HomePageController");
+    } catch (Exception e) {
+      System.out.println("Exception caught");
     }
   }
 }

@@ -18,7 +18,11 @@ public abstract class Controller {
    */
   protected void changeScene(String sceneName) throws Exception {
     //Load fxml file using the scene url in the scenes map in main using its key scene name
-    Parent root = FXMLLoader.load(getClass().getResource(Main.scenes.get(sceneName)));
+    FXMLLoader loader = new FXMLLoader(getClass().getResource(Main.scenes.get(sceneName)));
+
+    Main.currentController = loader;
+
+    Parent root = loader.load();
     //Load scene using root
     Main.loadScene(root);
   }

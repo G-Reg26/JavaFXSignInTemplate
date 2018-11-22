@@ -1,9 +1,19 @@
+/**
+ * The Manager class is the blueprint used for user accounts that contribute to teams and events,
+ * containing general and contributor account information
+ *
+ * @author Gregorio Lozada
+ * @version 1.0
+ * @since 10/21/2018
+ */
+
 package sample;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class Manager extends Contributor {
+
+  private ArrayList<Event> eventsOrganized = new ArrayList<>();
 
   public Manager() {
     super();
@@ -13,8 +23,7 @@ public class Manager extends Contributor {
     super(name, userName, passWord, type, team);
   }
 
-  public void getLines(ArrayList<String> list) throws IOException {
-    super.getLines(list);
-    list.add("Team:" + team.getName());
+  public ArrayList<Event> getEventsOrganized() {
+    return eventsOrganized;
   }
 }

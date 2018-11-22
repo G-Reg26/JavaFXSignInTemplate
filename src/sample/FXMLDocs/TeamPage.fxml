@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.TeamPageController">
+  <left>
+    <VBox alignment="CENTER" prefHeight="400.0" prefWidth="162.0" spacing="10.0" BorderPane.alignment="CENTER">
+      <children>
+        <StackPane prefHeight="150.0" prefWidth="200.0">
+          <children>
+            <ImageView fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@../Images/DefaultProfilePicTemp.png" />
+              </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@../Images/DefaultProfilePicBorder.png" />
+              </image>
+            </ImageView>
+          </children>
+        </StackPane>
+        <Text fx:id="teamName" strokeType="OUTSIDE" strokeWidth="0.0" text="[Team Name]" textAlignment="CENTER" wrappingWidth="142.984375">
+          <font>
+            <Font name="System Bold" size="12.0" />
+          </font>
+        </Text>
+        <VBox prefHeight="17.0" prefWidth="152.0">
+          <children>
+            <Label text="Members:" underline="true">
+              <font>
+                <Font name="System Bold" size="14.0" />
+              </font>
+            </Label>
+          </children>
+        </VBox>
+        <ListView fx:id="membersListView" prefHeight="398.0" prefWidth="152.0" />
+      </children>
+      <padding>
+        <Insets bottom="10.0" left="10.0" />
+      </padding>
+    </VBox>
+  </left>
+  <center>
+    <VBox prefHeight="200.0" prefWidth="100.0" spacing="8.0" BorderPane.alignment="CENTER">
+      <children>
+        <GridPane prefHeight="236.0" prefWidth="622.0">
+          <columnConstraints>
+            <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="400.0" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="400.0" />
+          </columnConstraints>
+          <rowConstraints>
+            <RowConstraints maxHeight="113.59998168945313" minHeight="10.0" prefHeight="26.39998855590821" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="176.80001144409178" minHeight="10.0" prefHeight="176.80001144409178" valignment="TOP" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="31.39999389648439" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+          </rowConstraints>
+          <children>
+            <Label text="News:" underline="true" GridPane.columnSpan="2">
+              <font>
+                <Font name="System Bold" size="14.0" />
+              </font>
+            </Label>
+            <Label text="Upcoming Events:" underline="true" GridPane.columnIndex="2" GridPane.columnSpan="2">
+              <font>
+                <Font name="System Bold" size="14.0" />
+              </font>
+            </Label>
+                  <ListView fx:id="newsListView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <ListView fx:id="eventsListView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+          </children>
+        </GridPane>
+        <HBox prefHeight="30.0" prefWidth="422.0" spacing="145.0">
+          <children>
+            <Label text="Wall:" underline="true">
+              <font>
+                <Font name="System Bold" size="14.0" />
+              </font>
+            </Label>
+          </children>
+        </HBox>
+        <HBox prefHeight="152.0" prefWidth="422.0" spacing="10.0">
+          <children>
+            <ListView fx:id="commentsListView" prefHeight="152.0" prefWidth="626.0" />
+          </children>
+        </HBox>
+        <TextArea fx:id="commentBox" prefHeight="31.0" prefWidth="422.0" promptText="Post comment" wrapText="true" VBox.vgrow="ALWAYS" />
+        <HBox alignment="BOTTOM_RIGHT" prefHeight="33.0" prefWidth="384.0" spacing="10.0">
+          <children>
+            <Button mnemonicParsing="false" onAction="#onPostButtonClicked" prefWidth="75.0" text="Post" />
+          </children>
+        </HBox>
+      </children>
+      <padding>
+        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+      </padding>
+    </VBox>
+  </center>
+  <top>
+    <ToolBar nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <items>
+        <GridPane maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="580.0">
+          <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          </columnConstraints>
+          <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          </rowConstraints>
+          <children>
+            <Button fx:id="follow_Edit_Button" mnemonicParsing="false" onAction="#onFollow_Edit_ButtonClicked" text="Follow" GridPane.columnIndex="1" />
+            <Button mnemonicParsing="false" onAction="#onHomePageButtonClicked" text="Home Page" />
+          </children>
+        </GridPane>
+      </items>
+    </ToolBar>
+  </top>
+</BorderPane>

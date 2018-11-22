@@ -8,211 +8,139 @@
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-  prefHeight="400.0" prefWidth="600.0" snapToPixel="false" xmlns="http://javafx.com/javafx/10.0.1"
-  xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.HomePage">
-  <children>
-    <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0"
-      AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" snapToPixel="false" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.HomePageController">
+  <left>
+    <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="360.0" prefWidth="130.0" scaleShape="false" snapToPixel="false" spacing="8.0" BorderPane.alignment="CENTER">
       <children>
-        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-          minWidth="-Infinity" prefHeight="360.0" prefWidth="510.0" AnchorPane.bottomAnchor="0.0"
-          AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+        <StackPane prefHeight="150.0" prefWidth="200.0">
           <children>
-            <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-              minWidth="-Infinity" pickOnBounds="false" prefHeight="350.0" prefWidth="470.0"
-              AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0"
-              AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-              <columnConstraints>
-                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0"
-                  prefWidth="10.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="300.0"/>
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP"
-                  vgrow="SOMETIMES"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP"
-                  vgrow="SOMETIMES"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP"
-                  vgrow="SOMETIMES"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP"
-                  vgrow="SOMETIMES"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP"
-                  vgrow="SOMETIMES"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP"
-                  vgrow="SOMETIMES"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP"
-                  vgrow="SOMETIMES"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP"
-                  vgrow="SOMETIMES"/>
-              </rowConstraints>
-              <children>
-                <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0"
-                  text="These Text nodes will display recent news regarding teams the currentl logged in user follows such as:"
-                  wrappingWidth="374.59527587890625" GridPane.columnIndex="1"
-                  GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS"/>
-                <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0"
-                  text="[Insert Team Player Name] has joined [Insert Team Name]"
-                  wrappingWidth="376.306640625" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS"
-                  GridPane.rowIndex="2" GridPane.vgrow="ALWAYS"/>
-                <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0"
-                  text="[Insert Team Name] recently set up the event [Insert Event Name]"
-                  GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3"
-                  GridPane.vgrow="ALWAYS"/>
-                <Text boundsType="VISUAL" strokeType="OUTSIDE" strokeWidth="0.0"
-                  text="[Insert Team Name] won the event [Insert Event Name]: [Insert Scores]"
-                  wrappingWidth="375.98046875" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS"
-                  GridPane.rowIndex="4" GridPane.vgrow="ALWAYS"/>
-                <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-                  minWidth="-Infinity" prefHeight="25.0" prefWidth="51.0" text="NEWS:"
-                  underline="true">
-                  <font>
-                    <Font name="System Bold" size="16.0"/>
-                  </font>
-                </Label>
-                <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-                  minWidth="-Infinity" prefHeight="25.0" prefWidth="156.0" text="UPCOMING EVENTS:"
-                  underline="true" GridPane.columnSpan="2" GridPane.rowIndex="5">
-                  <font>
-                    <Font name="System Bold" size="16.0"/>
-                  </font>
-                </Label>
-                <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0"
-                  text="[Insert Event]: [Insert Event Date]" GridPane.columnIndex="1"
-                  GridPane.hgrow="ALWAYS" GridPane.rowIndex="6" GridPane.vgrow="ALWAYS"/>
-                <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0"
-                  text="[Insert Event]: [Insert Event Date]" GridPane.columnIndex="1"
-                  GridPane.hgrow="ALWAYS" GridPane.rowIndex="7" GridPane.vgrow="ALWAYS"/>
-                <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0"
-                  text="[Insert Event]: [Insert Event Date]" GridPane.columnIndex="1"
-                  GridPane.hgrow="ALWAYS" GridPane.rowIndex="8" GridPane.vgrow="ALWAYS"/>
-                <VBox alignment="BOTTOM_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity"
-                  minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="350.0"
-                  GridPane.columnIndex="1" GridPane.rowIndex="8">
-                  <children>
-                    <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-                      minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0"
-                      prefWidth="35.0" text="..." VBox.vgrow="ALWAYS"/>
-                  </children>
-                </VBox>
-              </children>
-              <padding>
-                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-              </padding>
-            </GridPane>
+            <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@../Images/DefaultProfilePicTemp.png" />
+              </image>
+              <viewport>
+                <Rectangle2D />
+              </viewport>
+            </ImageView>
+            <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@../Images/DefaultProfilePicBorder.png" />
+              </image>
+              <viewport>
+                <Rectangle2D />
+              </viewport>
+            </ImageView>
           </children>
-        </AnchorPane>
-        <ToolBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-          minWidth="-Infinity" prefHeight="40.0" prefWidth="600.0" snapToPixel="false"
-          AnchorPane.bottomAnchor="360.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-          AnchorPane.topAnchor="0.0">
-          <items>
-            <GridPane hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-              minWidth="-Infinity" prefHeight="40.0" prefWidth="585.0">
+        </StackPane>
+        <Label fx:id="userName" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="100.0" text="[Username]" textAlignment="CENTER" VBox.vgrow="ALWAYS">
+          <font>
+            <Font name="System Bold" size="12.0" />
+          </font>
+        </Label>
+        <Button fx:id="customizationButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" text="Account Page" VBox.vgrow="ALWAYS" />
+        <Button fx:id="followingButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleFollowingButtonAction" prefHeight="30.0" prefWidth="120.0" text="Following" VBox.vgrow="ALWAYS" />
+        <Button fx:id="edit_joinTeam" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleEditAndJoinTeamButtonAction" prefHeight="30.0" prefWidth="120.0" text="Team Page" VBox.vgrow="ALWAYS" />
+        <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="100.0" scaleShape="false" spacing="10.0" VBox.vgrow="ALWAYS" />
+      </children>
+      <padding>
+        <Insets bottom="10.0" />
+      </padding>
+    </VBox>
+  </left>
+  <top>
+    <ToolBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="600.0" snapToPixel="false" BorderPane.alignment="CENTER">
+      <items>
+        <GridPane hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="585.0">
+          <columnConstraints>
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="215.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" prefWidth="185.0" />
+            <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" maxWidth="-Infinity" prefWidth="150.0" />
+          </columnConstraints>
+          <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          </rowConstraints>
+          <children>
+            <TextField fx:id="teamSearchBar" prefHeight="26.0" prefWidth="214.0" GridPane.columnIndex="1" />
+            <GridPane GridPane.hgrow="ALWAYS">
               <columnConstraints>
-                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES"
-                  maxWidth="1.7976931348623157E308"/>
-                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES"
-                  maxWidth="1.7976931348623157E308"/>
-                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES"
-                  maxWidth="1.7976931348623157E308" minWidth="-Infinity"/>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="50.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="150.0" />
+                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="50.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
               <children>
-                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false"
-                  onAction="#handleLoginButtonAction" text="Log In" GridPane.columnIndex="2"/>
-                <TextField maxHeight="-Infinity" maxWidth="1.7976931348623157E308"
-                  minWidth="-Infinity" GridPane.columnIndex="1"/>
-                <HBox alignment="CENTER" maxHeight="1.7976931348623157E308"
-                  maxWidth="1.7976931348623157E308" spacing="25.0">
-                  <children>
-                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="[Team Initials]: 0"/>
-                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Event"/>
-                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="[Team Initials]: 0"/>
-                  </children>
-                </HBox>
+                <Label text="T1: 0" />
+                <Label text="T2: 0" GridPane.columnIndex="2" />
+                <Label text="[EventName]" GridPane.columnIndex="1" />
               </children>
             </GridPane>
-          </items>
-        </ToolBar>
-        <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-          minWidth="-Infinity" prefHeight="360.0" prefWidth="110.0" scaleShape="false"
-          snapToPixel="false" spacing="8.0" AnchorPane.bottomAnchor="0.0"
-          AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="475.0" AnchorPane.topAnchor="40.0">
+            <HBox alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="116.0" spacing="10.0" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+              <children>
+                <Button maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onSearchButtonClicked" prefWidth="70.0" text="Search" />
+                <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" mnemonicParsing="false" onAction="#handleLoginButtonAction" prefWidth="70.0" text="Log In" />
+              </children>
+            </HBox>
+          </children>
+        </GridPane>
+      </items>
+    </ToolBar>
+  </top>
+  <center>
+    <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="350.0" prefWidth="470.0" BorderPane.alignment="CENTER">
+      <columnConstraints>
+        <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="10.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="300.0" />
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
+      </rowConstraints>
+      <children>
+        <Text fx:id="news1" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="These Text nodes will display recent news regarding teams the currentl logged in user follows such as:" wrappingWidth="374.59527587890625" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" />
+        <Text fx:id="news2" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="[Insert Team Player Name] has joined [Insert Team Name]" wrappingWidth="376.306640625" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS" />
+        <Text fx:id="news3" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="[Insert Team Name] recently set up the event [Insert Event Name]" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS" />
+        <Text fx:id="news4" boundsType="VISUAL" strokeType="OUTSIDE" strokeWidth="0.0" text="[Insert Team Name] won the event [Insert Event Name]: [Insert Scores]" wrappingWidth="375.98046875" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.vgrow="ALWAYS" />
+        <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="51.0" text="NEWS:" underline="true">
+          <font>
+            <Font name="System Bold" size="16.0" />
+          </font>
+        </Label>
+        <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="156.0" text="UPCOMING EVENTS:" underline="true" GridPane.columnSpan="2" GridPane.rowIndex="5">
+          <font>
+            <Font name="System Bold" size="16.0" />
+          </font>
+        </Label>
+        <Text fx:id="upcomingEvent1" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="[Insert Event]: [Insert Event Date]" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6" GridPane.vgrow="ALWAYS" />
+        <Text fx:id="upcomingEvent2" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="[Insert Event]: [Insert Event Date]" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="7" GridPane.vgrow="ALWAYS" />
+        <Text fx:id="upcomingEvent3" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="[Insert Event]: [Insert Event Date]" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="8" GridPane.vgrow="ALWAYS" />
+        <VBox alignment="BOTTOM_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="350.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
           <children>
-            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-              minWidth="-Infinity" prefHeight="100.0" prefWidth="100.0" scaleShape="false"
-              VBox.vgrow="ALWAYS">
-              <children>
-                <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true"
-                  AnchorPane.bottomAnchor="12.5" AnchorPane.leftAnchor="12.5"
-                  AnchorPane.rightAnchor="12.5" AnchorPane.topAnchor="12.5">
-                  <image>
-                    <Image url="@../Images/DefaultProfilePicTemp.png"/>
-                  </image>
-                  <viewport>
-                    <Rectangle2D/>
-                  </viewport>
-                </ImageView>
-                <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true"
-                  preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                  AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                  <image>
-                    <Image url="@../Images/DefaultProfilePicBorder.png"/>
-                  </image>
-                  <viewport>
-                    <Rectangle2D/>
-                  </viewport>
-                </ImageView>
-              </children>
-            </AnchorPane>
-            <Label fx:id="userName" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity"
-              minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="100.0"
-              text="[Username]" textAlignment="CENTER" VBox.vgrow="ALWAYS">
-              <font>
-                <Font name="System Bold" size="12.0"/>
-              </font>
-            </Label>
-            <Button fx:id="customizationButton" alignment="CENTER" contentDisplay="CENTER"
-              maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-              mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" text="Customize"
-              VBox.vgrow="ALWAYS"/>
-            <Button onAction="#handleFollowingButtonAction" fx:id="followingButton"
-              maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-              mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" text="Following"
-              VBox.vgrow="ALWAYS"/>
-            <Button onAction="#handleEditAndJoinTeamButtonAction" fx:id="edit_joinTeam"
-              maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-              mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" text="Edit Team"
-              VBox.vgrow="ALWAYS"/>
-            <Button fx:id="editEvent" maxHeight="-Infinity" maxWidth="-Infinity"
-              minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0"
-              prefWidth="90.0" text="Edit Event" VBox.vgrow="ALWAYS"/>
-            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity"
-              minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="100.0"
-              scaleShape="false" spacing="10.0" VBox.vgrow="ALWAYS">
-              <children>
-                <Button fx:id="addEvent" alignment="CENTER" maxHeight="-Infinity"
-                  maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                  mnemonicParsing="false" prefHeight="50.0" prefWidth="90.0" text="Add Event"
-                  VBox.vgrow="ALWAYS"/>
-              </children>
-            </VBox>
+            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" text="..." VBox.vgrow="ALWAYS" />
           </children>
         </VBox>
       </children>
-    </AnchorPane>
-  </children>
-</AnchorPane>
+      <padding>
+        <Insets left="10.0" top="10.0" />
+      </padding>
+    </GridPane>
+  </center>
+</BorderPane>

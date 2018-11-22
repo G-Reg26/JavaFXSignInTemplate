@@ -1,9 +1,21 @@
+/**
+ * The Account class is the blueprint used for user accounts, containing information such as:
+ * Account Type: The type of the account (Spectator, player, or manager) Name: user's name Username:
+ * used to identify a user's account Password: user's password required to access their account
+ * Teams Followed: The teams the user follows As well as implements the StoredInformation interface,
+ * which is used for storing account info into a file.
+ *
+ * @author Gregorio Lozada
+ * @version 1.0
+ * @since 10/18/2018
+ */
+
 package sample;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Account {
+public class Account implements StoredInformation {
 
   //Types of accounts
   public enum AccountType {
@@ -75,7 +87,12 @@ public class Account {
     return type;
   }
 
-  public ArrayList<Team> getTeamsFollowed(){
+  /***
+   * Getter method for teams followed
+   *
+   * @return teams followed list of an instance of account
+   */
+  public ArrayList<Team> getTeamsFollowed() {
     return teamsFollowed;
   }
 
@@ -137,9 +154,8 @@ public class Account {
    * Adds string objects of each attribute of an instance of account to an array list
    *
    * @param list the list that string objects will be added to
-   * @throws IOException
    */
-  public void getLines(ArrayList<String> list) throws IOException {
+  public void getObjectData(ArrayList<String> list) {
     list.add("Type:" + type.toString());
     list.add("User:" + username);
     list.add("Name:" + name);
@@ -152,5 +168,21 @@ public class Account {
       }
       list.add("Teams followed end");
     }
+  }
+
+  public static Account findUserByName(String username) {
+    if (accounts.size() > 0) {
+      for (Account account : accounts) {
+        if (account.getUsername().equals(username)) {
+          return account;
+        }
+      }
+    }
+
+    return null;
+  }
+
+  public String toString() {
+    return username;
   }
 }

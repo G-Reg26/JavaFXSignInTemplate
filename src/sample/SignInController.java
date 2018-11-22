@@ -34,7 +34,7 @@ public class SignInController extends Controller {
         //Notify user whose account you're signing into
         try {
           //Go to home page
-          changeScene("HomePage");
+          changeScene("HomePageController");
         } catch (Exception exception) {
           System.out.println("Exception caught");
         }
@@ -63,7 +63,7 @@ public class SignInController extends Controller {
   protected void handleReturnToHomepageButtonAction(ActionEvent event) {
     try {
       //Go to home page
-      changeScene("HomePage");
+      changeScene("HomePageController");
     } catch (Exception exception) {
       System.out.println("Exception caught");
     }
