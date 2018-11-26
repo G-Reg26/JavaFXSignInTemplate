@@ -117,7 +117,7 @@ public class HomePageController extends Controller {
         Collections.sort(Event.events);
 
         for (Event event : Event.events) {
-          if (event.getStartDateDate().after(today)) {
+          if (event.getEndDateDate().after(today)) {
             upcomingEvents.add(event);
           }
         }
@@ -209,7 +209,7 @@ public class HomePageController extends Controller {
           for (Event event : Event.events) {
             // If contributor's team is involved in event and event occurs after today
             if (event.teamIsInvolved(((Contributor) Account.currentUser).getTeam()) &&
-                event.getStartDateDate().after(today)) {
+                event.getEndDateDate().after(today)) {
               // Add event to upcoming events list
               upcomingEvents.add(event);
             }
@@ -221,7 +221,7 @@ public class HomePageController extends Controller {
           // For all teams in current user's follow list
           for (Team team : Account.currentUser.getTeamsFollowed()) {
             // If team is involved in event and occurs after today add event to upcoming events list
-            if (event.teamIsInvolved(team) && event.getStartDateDate().after(today)) {
+            if (event.teamIsInvolved(team) && event.getEndDateDate().after(today)) {
               upcomingEvents.add(event);
             }
           }
@@ -240,7 +240,7 @@ public class HomePageController extends Controller {
             }
           }
 
-          currentEventName.setText(Event.events.get(0).getName());
+          currentEventName.setText(upcomingEvents.get(0).getName());
           team1Score.setText("T1:" + upcomingEvents.get(0).getEventScore().getScore(0));
           team2Score.setText("T2:" + upcomingEvents.get(0).getEventScore().getScore(1));
         } else {

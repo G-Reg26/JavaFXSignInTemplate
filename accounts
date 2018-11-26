@@ -14,23 +14,92 @@ Type:PLAYER
 User:chutol29
 Name:Jesus Lozada
 Password:123
-TeamRequested:Gregs
+Team:Gregs
 user end
 Type:PLAYER
 User:slamchez
 Name:Carlos Sanchez
 Password:123
-TeamRequested:Gregs
+Team:Gregs
 user end
 Type:PLAYER
 User:camilster
 Name:Camilo Mendoza
 Password:123
-TeamRequested:Gregs
 user end
 Type:PLAYER
 User:hoot
 Name:Pierre Paul
 Password:123
-TeamRequested:Gregs
+Team:Gregs
+user end
+Type:PLAYER
+User:shermanator
+Name:Jacob Sherman
+Password:123
+Team:Adubs
+user end
+Type:PLAYER
+User:jMoses4
+Name:Jordan Moses
+Password:123
+Team:Adubs
+user end
+Type:PLAYER
+User:digitalJW
+Name:Jordan Sasek
+Password:123
+Team:Adubs
+user end
+Type:PLAYER
+User:sonku
+Name:G
+Password:123
+Team:Adubs
+user end
+Type:MANAGER
+User:glowManMarc
+Name:Marco Amini
+Password:123
+Team:MarckyMarcs
+user end
+Type:PLAYER
+User:dalt1
+Name:Dalton Stokes
+Password:123
+Team:MarckyMarcs
+user end
+Type:PLAYER
+User:TheDoster
+Name:Dylan Doster
+Password:123
+Team:MarckyMarcs
+user end
+Type:PLAYER
+User:tanMan
+Name:Caleb Tanner
+Password:123
+Team:MarckyMarcs
+user end
+Type:PLAYER
+User:AntMan
+Name:Anthony Satello
+Password:123
+Team:MarckyMarcs
+user end
+Type:PLAYER
+User:kyle
+Name:Kyle Richards
+Password:123
+user end
+Type:PLAYER
+User:jSmith
+Name:John Smith
+Password:123
+Teams followed:
+Gregs
+Adubs
+MarckyMarcs
+Teams followed end
+Team:Gregs
 user end
