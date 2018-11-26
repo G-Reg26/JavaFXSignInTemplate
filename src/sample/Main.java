@@ -1,5 +1,6 @@
 package sample;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -8,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javax.imageio.ImageIO;
 
 public class Main extends Application {
 
@@ -22,6 +24,12 @@ public class Main extends Application {
 
   @Override
   public void start(Stage primaryStage) throws Exception {
+    Team.defaultProfilePicFile = new File(".\\src\\sample\\Images\\DefaultProfilePicTemp.png");
+    Team.defaultProfilePic = ImageIO.read(Team.defaultProfilePicFile);
+
+    Account.defaultProfilePicFile = new File(".\\src\\sample\\Images\\DefaultProfilePicTemp.png");
+    Account.defaultProfilePic = ImageIO.read(Account.defaultProfilePicFile);
+
     fileManager = new FileManager();
 
     //Put fxml urls into the scenes hash map with a key that correlates to their file name
@@ -29,8 +37,8 @@ public class Main extends Application {
     scenes.put("CreateAccount", "FXMLDocs/CreateAccount.fxml");
     scenes.put("HomePageController", "FXMLDocs/HomePage.fxml");
     scenes.put("TeamPage", "FXMLDocs/TeamPage.fxml");
-    scenes.put("EditTeamPage", "FXMLDocs/EditTeamScreen.fxml");
-    scenes.put("CreateEvent", "FXMLDocs/AddEvent.fxml");
+    scenes.put("EditTeamPage", "FXMLDocs/EditTeam.fxml");
+    scenes.put("CreateEvent", "FXMLDocs/CreateEvent.fxml");
     scenes.put("EventPage", "FXMLDocs/EventPage.fxml");
 
     //Set up home page scene
@@ -52,7 +60,7 @@ public class Main extends Application {
     stage = primaryStage;
   }
 
-  public void stop() throws IOException {
+  public void stop() {
     fileManager.writeFiles();
   }
 

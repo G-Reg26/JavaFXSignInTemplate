@@ -12,30 +12,37 @@
 
 package sample;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import javax.imageio.ImageIO;
 
 public class Account implements StoredInformation {
 
-  //Types of accounts
   public enum AccountType {
     SPECTATOR,
     PLAYER,
     MANAGER,
   }
 
-  //This list contains all accounts created
   public static ArrayList<Account> accounts = new ArrayList<>();
-  //This is for the currently signed in user
+
   public static Account currentUser;
 
-  //An account consists of a list of followed teams, name, user name, and password
+  public static File defaultProfilePicFile;
+
+  public static BufferedImage defaultProfilePic;
+
   private ArrayList<Team> teamsFollowed = new ArrayList<>();
 
   private AccountType type;
   private String name;
   private String username;
   private String password;
+
+  private File profilePicFile;
+  private BufferedImage profilePic = defaultProfilePic;
 
   public Account() {
     name = "";
@@ -49,90 +56,59 @@ public class Account implements StoredInformation {
     this.username = username;
     this.password = password;
     this.type = type;
+
+    initializeProfilePic();
   }
 
-  /***
-   * Getter method for name
-   *
-   * @return name attribute of an instance of account
-   */
-  public String getName() {
-    return name;
-  }
-
-  /***
-   * Getter method for username
-   *
-   * @return username attribute of an instance of account
-   */
-  public String getUsername() {
-    return username;
-  }
-
-  /***
-   * Getter method for password
-   *
-   * @return username attribute of an instance of account
-   */
-  public String getPassword() {
-    return password;
-  }
-
-  /***
-   * Getter method for type
-   *
-   * @return type attribute of an instance of account
-   */
-  public AccountType getAccountType() {
-    return type;
-  }
-
-  /***
-   * Getter method for teams followed
-   *
-   * @return teams followed list of an instance of account
-   */
   public ArrayList<Team> getTeamsFollowed() {
     return teamsFollowed;
   }
 
-  /***
-   * Setter method for name
-   *
-   * @param name the name attribute will be set to this parameter
-   */
+  public String getName() {
+    return name;
+  }
+
+  public String getUsername() {
+    return username;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public AccountType getAccountType() {
+    return type;
+  }
+
+  public File getProfilePicFile() {
+    return profilePicFile;
+  }
+
+  public BufferedImage getProfilePic() {
+    return profilePic;
+  }
+
   public void setName(String name) {
     this.name = name;
   }
 
-  /***
-   * Setter method for username
-   *
-   * @param username the username attribute will be set to this parameter
-   */
   public void setUsername(String username) {
     this.username = username;
   }
 
-  /***
-   * Setter method for password
-   *
-   * @param password the password attribute will be set to this parameter
-   */
   public void setPassword(String password) {
     this.password = password;
   }
 
-  /***
-   * Setter method for type
-   *
-   * @param type the type attribute will be set to this parameter
-   */
   public void setType(AccountType type) {
     this.type = type;
   }
 
-  /***
+  public void setProfilePic(BufferedImage image) {
+    profilePic = image;
+  }
+
+  /**
    * Adds specific team to the teams followed list
    *
    * @param teamToFollow the team that will be added to the teams followed list
@@ -141,7 +117,7 @@ public class Account implements StoredInformation {
     teamsFollowed.add(teamToFollow);
   }
 
-  /***
+  /**
    * Removes specific team from the teams followed list
    *
    * @param teamToUnfollow the team that will be removed from the teams followed list
@@ -150,7 +126,56 @@ public class Account implements StoredInformation {
     teamsFollowed.remove(teamToUnfollow);
   }
 
-  /***
+  /**
+   * Find account using string passed as a parameter
+   *
+   * @param username username of team to find
+   * @return account with the name matching username or null if nothing is found
+   */
+  public static Account findUserByName(String username) {
+    // For every account in account list
+    for (Account account : accounts) {
+      // If account username matches username passed
+      if (account.getUsername().equals(username)) {
+        return account;
+      }
+    }
+
+    // Nothing was found
+    return null;
+  }
+
+  /**
+   * Initialize team profile picture
+   */
+  public void initializeProfilePic() {
+    // Create file object
+    profilePicFile =
+        new File(".\\src\\sample\\Images\\AccountProfilePics\\" + username + ".png");
+
+    try {
+      // If file exists
+      if (!profilePicFile.exists()) {
+        // Create file
+        profilePicFile.createNewFile();
+        // Set profile pic to the default profile pic
+        profilePic = defaultProfilePic;
+      } else {
+        // If profile pic is empty
+        if (profilePicFile.length() == 0) {
+          // Set profile pic to the default profile pic
+          profilePic = defaultProfilePic;
+        } else {
+          // Set profile pic to the png file in the profile pic file path
+          profilePic = ImageIO.read(profilePicFile);
+        }
+      }
+    } catch (IOException ioException) {
+      System.out.println("Input/Output exception caught");
+    }
+  }
+
+  /**
    * Adds string objects of each attribute of an instance of account to an array list
    *
    * @param list the list that string objects will be added to
@@ -168,18 +193,6 @@ public class Account implements StoredInformation {
       }
       list.add("Teams followed end");
     }
-  }
-
-  public static Account findUserByName(String username) {
-    if (accounts.size() > 0) {
-      for (Account account : accounts) {
-        if (account.getUsername().equals(username)) {
-          return account;
-        }
-      }
-    }
-
-    return null;
   }
 
   public String toString() {

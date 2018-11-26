@@ -16,7 +16,6 @@ public class EventScore {
     scoreArray[teamIndex] = score;
   }
 
-  //Sets getScore
   public int getScore(int teamIndex) {
     return scoreArray[teamIndex];
   }

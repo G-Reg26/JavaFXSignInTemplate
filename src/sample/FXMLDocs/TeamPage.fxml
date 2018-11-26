@@ -18,18 +18,18 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.TeamPageController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.TeamPageController">
   <left>
     <VBox alignment="CENTER" prefHeight="400.0" prefWidth="162.0" spacing="10.0" BorderPane.alignment="CENTER">
       <children>
         <StackPane prefHeight="150.0" prefWidth="200.0">
           <children>
-            <ImageView fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="profilePic" fitHeight="95.0" fitWidth="95.0" pickOnBounds="true" preserveRatio="true">
               <image>
                 <Image url="@../Images/DefaultProfilePicTemp.png" />
               </image>
             </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
               <image>
                 <Image url="@../Images/DefaultProfilePicBorder.png" />
               </image>
@@ -69,7 +69,8 @@
           </columnConstraints>
           <rowConstraints>
             <RowConstraints maxHeight="113.59998168945313" minHeight="10.0" prefHeight="26.39998855590821" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="176.80001144409178" minHeight="10.0" prefHeight="176.80001144409178" valignment="TOP" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="187.79998168945312" minHeight="10.0" prefHeight="187.79998168945312" valignment="TOP" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="176.80001144409178" minHeight="10.0" prefHeight="37.40001831054687" valignment="TOP" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="31.39999389648439" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
           </rowConstraints>
           <children>
@@ -85,6 +86,11 @@
             </Label>
                   <ListView fx:id="newsListView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <ListView fx:id="eventsListView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#onViewAllEventsButtonClicked" text="..." />
+                     </children>
+                  </HBox>
           </children>
         </GridPane>
         <HBox prefHeight="30.0" prefWidth="422.0" spacing="145.0">
@@ -116,7 +122,7 @@
   <top>
     <ToolBar nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
       <items>
-        <GridPane maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="580.0">
+        <GridPane maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="30.0" prefWidth="782.0">
           <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

@@ -1,13 +1,16 @@
 package sample;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
 
 public class Event implements StoredInformation, Comparable<Event> {
 
   public static ArrayList<Event> events = new ArrayList<>();
+
   public static Event currentEvent;
+
+  private SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM dd, yyyy h:mm a");
 
   private Manager organizer;
   private String name;
@@ -17,8 +20,10 @@ public class Event implements StoredInformation, Comparable<Event> {
   private String description;
   private EventScore eventScore;
   private Team[] teamsInvolved = new Team[2];
+  private boolean active;
 
   public Event() {
+    active = true;
     organizer = null;
     name = "";
     location = "";
@@ -32,6 +37,7 @@ public class Event implements StoredInformation, Comparable<Event> {
   public Event(Manager teamOrganizer, String eventName, String eventLocation, Date newEventDate,
       Date end,
       String desc) {
+    active = true;
     organizer = teamOrganizer;
     name = eventName;
     location = eventLocation;
@@ -42,6 +48,42 @@ public class Event implements StoredInformation, Comparable<Event> {
     eventScore = new EventScore();
   }
 
+  public Manager getOrganizer() {
+    return organizer;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public String getLocation() {
+    return location;
+  }
+
+  public Date getStartDateDate() {
+    return startDate;
+  }
+
+  public Date getEndDateDate() {
+    return endDate;
+  }
+
+  public String getDescription() {
+    return description;
+  }
+
+  public EventScore getEventScore() {
+    return eventScore;
+  }
+
+  public Team[] getTeamsInvolved() {
+    return teamsInvolved;
+  }
+
+  public boolean isActive() {
+    return active;
+  }
+
   public void setOrganizer(Manager manager) {
     organizer = manager;
   }
@@ -50,16 +92,16 @@ public class Event implements StoredInformation, Comparable<Event> {
     this.name = name;
   }
 
+  public void setLocation(String eventLocation) {
+    location = eventLocation;
+  }
+
   public void setStartDate(Date date) {
     startDate = date;
   }
 
   public void setEndDate(Date date) {
     endDate = date;
-  }
-
-  public void setLocation(String eventLocation) {
-    location = eventLocation;
   }
 
   public void setDescription(String description) {
@@ -78,75 +120,68 @@ public class Event implements StoredInformation, Comparable<Event> {
     }
   }
 
-  public Manager getOrganizer() {
-    return organizer;
+  public void setActive(boolean activate) {
+    active = activate;
   }
 
-  public Date getStartDateDate() {
-    return startDate;
-  }
-
-  public Date getEndDateDate() {
-    return endDate;
-  }
-
-  public String getLocation() {
-    return location;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public EventScore getEventScore() {
-    return eventScore;
-  }
-
-  public String getDescription() {
-    return description;
-  }
-
-  public Team[] getTeamsInvolved() {
-    return teamsInvolved;
-  }
-
+  /**
+   * Checks if the team passed is involved in event
+   *
+   * @param team team to check
+   * @return true if team is involved false if otherwise
+   */
   public boolean teamIsInvolved(Team team) {
     return (team == teamsInvolved[0] || team == teamsInvolved[1]);
   }
 
+  /**
+   * Find event using string passed as a parameter
+   *
+   * @param eventName name of event to find
+   * @return event with the name matching eventName or null if nothing is found
+   */
   public static Event getEventByName(String eventName) {
-    if (events.size() > 0) {
-      for (Event event : events) {
-        if (event.getName().equals(eventName)) {
-          return event;
-        }
+    // For every event in events list
+    for (Event event : events) {
+      // If event name matches eventName
+      if (event.getName().equals(eventName)) {
+        return event;
       }
     }
 
+    // Nothing was found
     return null;
   }
 
+  /**
+   * Checks if date passed overlaps with start and end date
+   *
+   * @param dateToCheck date to check
+   * @return true if date overlaps false if otherwise
+   */
   public boolean overlapDate(Date dateToCheck) {
     return startDate.compareTo(dateToCheck) * dateToCheck.compareTo(endDate) >= 0;
   }
 
+  /**
+   * Checks which team has the highest score and returns event winner
+   * @return team that won event or null if a draw
+   */
   public Team getEventWinner() {
-    if (eventScore.getScore(0) > eventScore.getScore(1))
+    if (eventScore.getScore(0) > eventScore.getScore(1)) {
       return teamsInvolved[0];
-    else if (eventScore.getScore(0) < eventScore.getScore(1))
+    } else if (eventScore.getScore(0) < eventScore.getScore(1)) {
       return teamsInvolved[1];
-    else
+    } else {
       return null;
+    }
   }
 
-  public String toString() {
-    return name + ": " + startDate;
-  }
-
-  public int compareTo(Event event) {
-    return startDate.compareTo(event.getStartDateDate());
-  }
-
+  /**
+   * Adds string objects of each attribute of an instance of event to an array list
+   *
+   * @param list the list that string objects will be added to
+   */
   public void getObjectData(ArrayList<String> list) {
     list.add("Organizer:" + organizer);
     list.add("Name:" + name);
@@ -158,6 +193,31 @@ public class Event implements StoredInformation, Comparable<Event> {
     list.add("Team2:" + teamsInvolved[1]);
     list.add("Team1Score:" + eventScore.getScore(0));
     list.add("Team2Score:" + eventScore.getScore(1));
+    list.add("Active:" + active);
     list.add("event end");
+  }
+
+  public int compareTo(Event event) {
+    return startDate.compareTo(event.getStartDateDate());
+  }
+
+  public String toString() {
+    Date today = new Date();
+
+    if (today.before(startDate)) {
+      return name + ": " + dateFormatter.format(startDate) + " [Upcoming]";
+    } else if (today.after(startDate) && today.before(endDate)) {
+      return name + ": " + dateFormatter.format(startDate) + " [Ongoing]";
+    } else if (today.after(endDate)) {
+      if (getEventWinner() != null) {
+        return
+            name + ": " + dateFormatter.format(startDate) + " [Winner: " + getEventWinner() + "]";
+      } else {
+        return
+            name + ": " + dateFormatter.format(startDate) + " [Draw]";
+      }
+    } else {
+      return "";
+    }
   }
 }

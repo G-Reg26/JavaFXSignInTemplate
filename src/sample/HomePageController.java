@@ -1,15 +1,17 @@
 package sample;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -20,13 +22,22 @@ public class HomePageController extends Controller {
   private Label userName;
 
   @FXML
-  private Button customizationButton;
-
-  @FXML
   private Button followingButton;
 
   @FXML
-  private Button edit_joinTeam;
+  private Button team_joinTeamButton;
+
+  @FXML
+  private Button editProfileButton;
+
+  @FXML
+  private Label currentEventName;
+
+  @FXML
+  private Label team1Score;
+
+  @FXML
+  private Label team2Score;
 
   @FXML
   private Text news1;
@@ -52,7 +63,13 @@ public class HomePageController extends Controller {
   @FXML
   private TextField teamSearchBar;
 
-  private Stage popUpStage;
+  @FXML
+  private ContextMenu contextMenu;
+
+  @FXML
+  private ImageView profilePic;
+
+  private Image image;
 
   private String[] news = new String[4];
 
@@ -60,21 +77,27 @@ public class HomePageController extends Controller {
 
   private ArrayList<News> specificNews = new ArrayList<>();
 
-  private ArrayList<Event> specificEvents = new ArrayList<>();
+  private ArrayList<Event> upcomingEvents = new ArrayList<>();
 
-  /***
-   * This method initializes a pop up stage and enables/disables certain home page buttons depending
-   * on the current user's account type
-   */
+  private Date today;
+
+  private float xOffset;
+
+  private float yOffset;
+
   @FXML
-  protected void initialize() {
-    //Initialize pop up stage
+  private void initialize() {
+    // Initialize pop up stage
     popUpStage = new Stage();
     popUpStage.initModality(Modality.APPLICATION_MODAL);
 
-    //If user has yet to sign in
+    today = new Date();
+
+    // If user has yet to sign in
     if (Account.currentUser == null) {
+      // If news list is not empty
       if (News.newsList.size() > 0) {
+        // Fill news text nodes with the five latest news headlines
         Collections.sort(News.newsList, Collections.reverseOrder());
 
         for (int i = 0; i < news.length; i++) {
@@ -88,51 +111,84 @@ public class HomePageController extends Controller {
         news[0] = "No recent news";
       }
 
+      // If there's at least one event
       if (Event.events.size() > 0) {
-        Collections.sort(Event.events, Collections.reverseOrder());
+        // Fill list of upcoming events with events that occur after today
+        Collections.sort(Event.events);
 
-        for (int i = 0; i < events.length; i++) {
-          if (i < Event.events.size()) {
-            if (i < News.newsList.size()) {
-              events[i] = Event.events.get(i).toString();
-            } else {
-              events[i] = "";
-            }
+        for (Event event : Event.events){
+          if (event.getStartDateDate().after(today)){
+            upcomingEvents.add(event);
           }
+        }
+
+        // Fill events text nodes with the five latest upcoming events
+        for (int i = 0; i < events.length; i++) {
+          if (i < upcomingEvents.size()) {
+            events[i] = upcomingEvents.get(i).toString();
+          } else {
+            events[i] = "";
+          }
+        }
+
+        // If upcoming events list is not empty
+        if (upcomingEvents.size() > 0) {
+          currentEventName.setText(upcomingEvents.get(0).getName());
+          team1Score.setText("T1:" + upcomingEvents.get(0).getEventScore().getScore(0));
+          team2Score.setText("T2:" + upcomingEvents.get(0).getEventScore().getScore(1));
+        } else {
+          events[0] = "No upcoming events";
+          currentEventName.setText("No upcoming events");
+          team1Score.setText("");
+          team2Score.setText("");
         }
       } else {
         events[0] = "No upcoming events";
       }
 
-      //Set username text as guest and disable the following buttons:
+      // Set username text as guest and disable the following buttons:
       userName.setText("Guest");
-      customizationButton.setDisable(true);
-      customizationButton.setVisible(false);
 
       followingButton.setDisable(true);
       followingButton.setVisible(false);
 
-      edit_joinTeam.setDisable(true);
-      edit_joinTeam.setVisible(false);
+      team_joinTeamButton.setDisable(true);
+      team_joinTeamButton.setVisible(false);
+
+      editProfileButton.setDisable(true);
+      editProfileButton.setVisible(false);
+
     } else {
-      if (Account.currentUser instanceof Contributor) {
-        for (News news : News.newsList) {
-          if (news.teamIsInvolved(((Contributor) Account.currentUser).getTeam())) {
-            specificNews.add(news);
+      // Set profile pic image view
+      image = SwingFXUtils.toFXImage(Account.currentUser.getProfilePic(), null);
+      profilePic.setImage(image);
+
+      // If news list is not empty
+      if (News.newsList.size() > 0) {
+        // If current user is a contributor
+        if (Account.currentUser instanceof Contributor) {
+          // Add any news that contributor's team is involved with to the specific news list
+          for (News news : News.newsList) {
+            if (news.teamIsInvolved(((Contributor) Account.currentUser).getTeam())) {
+              specificNews.add(news);
+            }
           }
         }
-      }
 
-      if (News.newsList.size() > 0) {
+        // For all news in news list
         for (News news : News.newsList) {
+          // For all teams in current user's follow list
           for (Team team : Account.currentUser.getTeamsFollowed()) {
+            // If team is involved in news add it to the specific news list
             if (news.teamIsInvolved(team)) {
               specificNews.add(news);
             }
           }
         }
 
+        // If specific news is not empty
         if (specificNews.size() > 0) {
+          // Fill news text nodes with the five latest news headlines in specific news list
           Collections.sort(specificNews, Collections.reverseOrder());
 
           for (int i = 0; i < news.length; i++) {
@@ -147,39 +203,65 @@ public class HomePageController extends Controller {
         }
       }
 
+      // If events list is not empty
       if (Event.events.size() > 0) {
-        for (Event event : Event.events) {
-          for (Team team : Account.currentUser.getTeamsFollowed()) {
-            if (event.teamIsInvolved(team)) {
-              specificEvents.add(event);
+        // If current user is a contributor
+        if (Account.currentUser instanceof Contributor) {
+          // For all events in events list
+          for (Event event : Event.events) {
+            // If contributor's team is involved in event and event occurs after today
+            if (event.teamIsInvolved(((Contributor) Account.currentUser).getTeam()) &&
+                event.getStartDateDate().after(today)) {
+              // Add event to upcoming events list
+              upcomingEvents.add(event);
             }
           }
         }
 
-        if (specificEvents.size() > 0) {
-          Collections.sort(specificEvents, Collections.reverseOrder());
+        // For all events in events list
+        for (Event event : Event.events) {
+          // For all teams in current user's follow list
+          for (Team team : Account.currentUser.getTeamsFollowed()) {
+            // If team is involved in event and occurs after today add event to upcoming events list
+            if (event.teamIsInvolved(team) && event.getStartDateDate().after(today)) {
+              upcomingEvents.add(event);
+            }
+          }
+        }
+
+        // If upcoming events is not empty
+        if (upcomingEvents.size() > 0) {
+          // Fill events text nodes with the five latest upcoming events
+          Collections.sort(upcomingEvents);
 
           for (int i = 0; i < events.length; i++) {
-            if (i < specificEvents.size()) {
-              events[i] = specificEvents.get(i).toString();
+            if (i < upcomingEvents.size()) {
+              events[i] = upcomingEvents.get(i).toString();
             } else {
               events[i] = "";
             }
           }
+
+          currentEventName.setText(Event.events.get(0).getName());
+          team1Score.setText("T1:" + upcomingEvents.get(0).getEventScore().getScore(0));
+          team2Score.setText("T2:" + upcomingEvents.get(0).getEventScore().getScore(1));
         } else {
           events[0] = "No upcoming events in follow list";
+          currentEventName.setText("No upcoming events");
+          team1Score.setText("");
+          team2Score.setText("");
         }
       }
 
-      //If a user has signed in set username label to the username of the currently signed in
-      //account
+      // If a user has signed in set username label to the username of the currently signed in
+      // account
       userName.setText(Account.currentUser.getUsername());
 
-      //Depending on the current user's account type disable the following buttons:
+      // Depending on the current user's account type disable the following buttons:
       switch (Account.currentUser.getAccountType()) {
         case SPECTATOR:
-          edit_joinTeam.setDisable(true);
-          edit_joinTeam.setVisible(false);
+          team_joinTeamButton.setDisable(true);
+          team_joinTeamButton.setVisible(false);
           break;
         case PLAYER:
           updateJoinTeamButton();
@@ -197,115 +279,119 @@ public class HomePageController extends Controller {
     upcomingEvent1.setText(events[0]);
     upcomingEvent2.setText(events[1]);
     upcomingEvent3.setText(events[2]);
+
+    xOffset = 450.0f;
+    yOffset = 65.0f;
+
+    setTeamSearchBarDropDownMenu(teamSearchBar, contextMenu, xOffset, yOffset);
   }
 
+  /**
+   * This handles what happens when the search button is clicked
+   */
   @FXML
-  protected void onSearchButtonClicked() {
+  private void onSearchButtonClicked() {
+    // For every team in teams list
     for (Team team : Team.teams) {
+      // If team name equals the text in team search bar
       if (team.getName().toUpperCase().equals(teamSearchBar.getText().toUpperCase())) {
         Team.currentTeam = team;
-        try {
-          changeScene("TeamPage");
-        } catch (Exception e) {
-          System.out.println(team);
-        }
+        changeScene("TeamPage");
         break;
       }
     }
   }
 
-  /***
+  /**
    * This handles what happens when the sign in button is clicked
    */
   @FXML
-  protected void handleLoginButtonAction() {
-    try {
-      //Go to login scene
-      changeScene("Login");
-    } catch (Exception e) {
-      System.out.println("Exception caught");
-    }
+  private void onLoginButtonClicked() {
+    changeScene("Login");
   }
 
-  /***
+  /**
    * This handles what happens when the following button is clicked
-   *
-   * @throws IOException
    */
   @FXML
-  protected void handleFollowingButtonAction() throws IOException {
+  private void onFollowingButtonClicked() {
     loadPopUpScene("FXMLDocs/TeamsFollowedList.fxml", "Following");
   }
 
-  /***
-   * This handles what happens when the following button is clicked
-   *
-   * @throws IOException
+  /**
+   * This handles what happens when the team/join team button is clicked
    */
   @FXML
-  protected void handleEditAndJoinTeamButtonAction() throws IOException {
+  private void onTeamAndJoinTeamButtonClicked() {
     //Depending on the account type of the current user difference scenes will pop up
     switch (Account.currentUser.getAccountType()) {
       case PLAYER:
-        if (edit_joinTeam.getText().equals("Team")) {
+        // If current user is part of team
+        if (team_joinTeamButton.getText().equals("Team")) {
           Team.currentTeam = ((Player) Account.currentUser).getTeam();
-          try {
-            changeScene("TeamPage");
-          } catch (Exception e) {
-            System.out.println("Exception caught");
-          }
+          changeScene("TeamPage");
         } else {
           loadPopUpScene("FXMLDocs/JoinTeam.fxml", "Enter Team Name");
         }
         break;
       case MANAGER:
         Team.currentTeam = ((Manager) Account.currentUser).getTeam();
-        try {
-          changeScene("TeamPage");
-        } catch (Exception e) {
-          System.out.println("Exception caught");
-        }
+        changeScene("TeamPage");
         break;
       default:
         break;
     }
   }
 
-  /***
-   * This method loads in a pop up scene
-   *
-   * @param fxmlURL the URL of the fxml file that will be used for the scene
-   * @param sceneTitle title of the scene
-   * @throws IOException
+  /**
+   * This handles what happens when the edit profile button is clicked
    */
-  private void loadPopUpScene(String fxmlURL, String sceneTitle) throws IOException {
-    Parent root = FXMLLoader.load(getClass().getResource(fxmlURL));
-
-    Scene popUpScene = new Scene(root);
-
-    popUpStage.setScene(popUpScene);
-    popUpStage.setTitle(sceneTitle);
-    popUpStage.setResizable(false);
-
-    popUpStage.show();
+  @FXML
+  private void onEditProfileButtonClicked() {
+    // Profile is being edited
+    CreateAccountController.editing = true;
+    CreateAccountController.prevSceneKey = "HomePageController";
+    changeScene("CreateAccount");
   }
 
-  public void updateJoinTeamButton() {
+  /**
+   * This handles what happens when the view all events button is clicked
+   */
+  @FXML
+  private void onViewAllEventsButtonClicked() {
+    loadPopUpScene("FXMLDocs/EventsList.fxml", "Events");
+    EventPageController.prevSceneKey = "HomePageController";
+  }
+
+  /**
+   * Show context menu at specific coordinates, this is so the context menu stays at the same
+   * position regardless of where user right clicks the textfield
+   */
+  @FXML
+  private void onShowingContextMenu() {
+    contextMenu.setAnchorX(teamSearchBar.getScene().getWindow().getX() + xOffset);
+    contextMenu.setAnchorY(teamSearchBar.getScene().getWindow().getY() + yOffset);
+  }
+
+  /**
+   * Set text and visibility of the team/join team button
+   */
+  protected void updateJoinTeamButton() {
     if (Account.currentUser instanceof Player) {
       if (((Player) Account.currentUser).getTeam() != null) {
-        edit_joinTeam.setDisable(false);
-        edit_joinTeam.setText("Team");
+        team_joinTeamButton.setDisable(false);
+        team_joinTeamButton.setText("Team");
       } else {
         if (((Player) Account.currentUser).getTeamRequested() != null) {
-          edit_joinTeam.setDisable(true);
-          edit_joinTeam.setText("Request Pending");
+          team_joinTeamButton.setDisable(true);
+          team_joinTeamButton.setText("Request Pending");
         } else {
-          edit_joinTeam.setDisable(false);
-          edit_joinTeam.setText("Join Team");
+          team_joinTeamButton.setDisable(false);
+          team_joinTeamButton.setText("Join Team");
         }
       }
 
-      edit_joinTeam.setVisible(true);
+      team_joinTeamButton.setVisible(true);
     }
   }
 }

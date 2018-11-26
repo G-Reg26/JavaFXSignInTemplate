@@ -6,12 +6,9 @@ import java.time.LocalDate;
 import java.util.Date;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.Menu;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
@@ -20,7 +17,7 @@ import javafx.scene.text.Text;
 
 public class CreateEventController extends Controller {
 
-  private static boolean editing;
+  public static boolean editing;
 
   private SimpleDateFormat dateFormatter = new SimpleDateFormat("MM dd, yyyy h:mm a");
 
@@ -31,12 +28,6 @@ public class CreateEventController extends Controller {
 
   @FXML
   private Text messageNode;
-
-  @FXML
-  private TextField eventNameTextField;
-
-  @FXML
-  private TextField locationTextField;
 
   @FXML
   private MenuButton startMenuButton;
@@ -63,6 +54,12 @@ public class CreateEventController extends Controller {
   private DatePicker endDatePicker;
 
   @FXML
+  private TextField eventNameTextField;
+
+  @FXML
+  private TextField locationTextField;
+
+  @FXML
   private TextField startTimeHourTextField;
 
   @FXML
@@ -78,8 +75,8 @@ public class CreateEventController extends Controller {
   private TextArea descriptionTextArea;
 
   @FXML
-  void initialize() {
-    //Add text field nodes to textFields
+  private void initialize() {
+    // Add text field nodes to textFields
     textFields.add(eventNameTextField);
     textFields.add(locationTextField);
     textFields.add(startTimeHourTextField);
@@ -87,65 +84,43 @@ public class CreateEventController extends Controller {
     textFields.add(endTimeHourTextField);
     textFields.add(endTimeMinuteTextField);
 
-    //Set on action to all menu items
-    startAMMenuItem.setOnAction(new EventHandler<ActionEvent>() {
-      @Override
-      public void handle(ActionEvent event) {
-        startMenuButton.setText(startAMMenuItem.getText());
-      }
-    });
+    // Set on action to all menu items
+    startAMMenuItem.setOnAction(event -> startMenuButton.setText(startAMMenuItem.getText()));
 
-    startPMMenuItem.setOnAction(new EventHandler<ActionEvent>() {
-      @Override
-      public void handle(ActionEvent event) {
-        startMenuButton.setText(startPMMenuItem.getText());
-      }
-    });
+    startPMMenuItem.setOnAction(event -> startMenuButton.setText(startPMMenuItem.getText()));
 
-    endAMMenuItem.setOnAction(new EventHandler<ActionEvent>() {
-      @Override
-      public void handle(ActionEvent event) {
-        endMenuButton.setText(endAMMenuItem.getText());
-      }
-    });
+    endAMMenuItem.setOnAction(event -> endMenuButton.setText(endAMMenuItem.getText()));
 
-    endPMMenuItem.setOnAction(new EventHandler<ActionEvent>() {
-      @Override
-      public void handle(ActionEvent event) {
-        endMenuButton.setText(endPMMenuItem.getText());
-      }
-    });
+    endPMMenuItem.setOnAction(event -> endMenuButton.setText(endPMMenuItem.getText()));
 
-    //Add all teams to team list except the current user's team
+    // Add all teams to team list except the current user's team
     teamsList.addAll(Team.teams);
     teamsList.remove(((Manager) Account.currentUser).getTeam());
 
-    //Set items of the combo box
+    // Set items of the combo box
     teamsComboBox.setItems(teamsList);
 
+    // If event is being edited
     if (editing) {
+      // Set fields to the current event's values
       eventNameTextField.setText(Event.currentEvent.getName());
       locationTextField.setText(Event.currentEvent.getLocation());
 
-      startDatePicker.setValue(
-          LocalDate.of(Event.currentEvent.getStartDateDate().getYear() + 1900,
-              Event.currentEvent.getStartDateDate().getMonth() + 1,
-              Event.currentEvent.getStartDateDate().getDate()));
+      Date startDate = Event.currentEvent.getStartDateDate();
 
-      setHourTextField(Event.currentEvent.getStartDateDate().getHours(),
-          startTimeHourTextField,
-          startMenuButton);
-      startTimeMinuteTextField.setText("" + Event.currentEvent.getStartDateDate().getMinutes());
+      startDatePicker.setValue
+          (LocalDate.of(startDate.getYear() + 1900, startDate.getMonth() + 1, startDate.getDate()));
 
-      endDatePicker.setValue(
-          LocalDate.of(Event.currentEvent.getEndDateDate().getYear() + 1900,
-              Event.currentEvent.getEndDateDate().getMonth() + 1,
-              Event.currentEvent.getEndDateDate().getDate()));
+      setHourTextField(startDate.getHours(), startTimeHourTextField, startMenuButton);
+      startTimeMinuteTextField.setText("" + startDate.getMinutes());
 
-      setHourTextField(Event.currentEvent.getEndDateDate().getHours(),
-          endTimeHourTextField,
-          endMenuButton);
-      endTimeMinuteTextField.setText("" + Event.currentEvent.getEndDateDate().getMinutes());
+      Date endDate = Event.currentEvent.getEndDateDate();
+
+      endDatePicker.setValue
+          (LocalDate.of(endDate.getYear() + 1900, endDate.getMonth() + 1, endDate.getDate()));
+
+      setHourTextField(endDate.getHours(), endTimeHourTextField, endMenuButton);
+      endTimeMinuteTextField.setText("" + endDate.getMinutes());
 
       teamsComboBox.setValue(Event.currentEvent.getTeamsInvolved()[1]);
       descriptionTextArea.setText(Event.currentEvent.getDescription());
@@ -156,10 +131,12 @@ public class CreateEventController extends Controller {
    * This handles what happens when the create event button is clicked
    */
   @FXML
-  void onCreateEventButtonClicked() throws ParseException {
+  private void onCreateEventButtonClicked() {
+    // If all fields filled in
     if (checkNodes()) {
-      //Create a start date and end dates using date picker and time text fields
+      // If hour and minutes text fields have the appropriate values
       if (checkHoursAndMinutes()) {
+        // Set start date and end date
         Date startDate = getDate(startDatePicker,
             startTimeHourTextField.getText(),
             startTimeMinuteTextField.getText(),
@@ -170,18 +147,18 @@ public class CreateEventController extends Controller {
             endTimeMinuteTextField.getText(),
             endMenuButton);
 
-        //Make sure start date occurs before end date
-        if (checkDate(startDate, endDate)) {
-          //Make sure event name is not already taken
-          if (Event.getEventByName(eventNameTextField.getText()) == null ||
-              (Event.getEventByName(eventNameTextField.getText()) == Event.currentEvent &&
-                  editing)) {
-            //Make sure start date does not overlap with another event that one of teams is
-            //involved with
+        // Make sure start date occurs before end date
+        if (startDate.before(endDate)) {
+          // Make sure event name is not already taken
+          if (checkEventName(eventNameTextField.getText())) {
+            // Make sure start date does not overlap with another event that one of teams is
+            // involved with
             if (!dateOverlaps(startDate)) {
+              // If event is being edited
               if (editing) {
                 messageNode.setText("Even edited");
 
+                // Set current event's new values
                 Event.currentEvent.setName(eventNameTextField.getText());
                 Event.currentEvent.setLocation(locationTextField.getText());
                 Event.currentEvent.setStartDate(startDate);
@@ -190,28 +167,26 @@ public class CreateEventController extends Controller {
                 Event.currentEvent.setDescription(descriptionTextArea.getText());
               } else {
                 messageNode.setText("Event created");
-                //Set up events and set the teams involved
+                // Set up events and set the teams involved
                 Event tempEvent = new Event((Manager) Account.currentUser,
                     eventNameTextField.getText(),
-                    locationTextField.getText(), startDate, endDate, descriptionTextArea.getText());
+                    locationTextField.getText(),
+                    startDate,
+                    endDate,
+                    descriptionTextArea.getText());
 
                 tempEvent.setTeamsInvolved(((Manager) Account.currentUser).getTeam());
                 tempEvent.setTeamsInvolved(teamsComboBox.getValue());
 
-                //Add event to list
+                // Add event to list
                 Event.events.add(tempEvent);
                 ((Manager) Account.currentUser).getEventsOrganized().add(tempEvent);
 
-                try {
-                  changeScene("EditTeamPage");
-                } catch (Exception e) {
-                  System.out.println("Exception caught");
-                }
+                changeScene("EditTeamPage");
               }
             } else {
-              messageNode.
-                  setText(
-                      "Event overlaps with another event that one of the teams is involved with");
+              messageNode.setText
+                  ("Event overlaps with another event that one of the teams is involved with");
             }
           } else {
             messageNode.setText("Event name is already taken");
@@ -223,15 +198,13 @@ public class CreateEventController extends Controller {
     }
   }
 
+  /**
+   * This handles what happens when the back to edit team button is clicked
+   */
   @FXML
-  void onBackToEditTeamButtonClicked() {
+  private void onBackToEditTeamButtonClicked() {
     editing = false;
-
-    try {
-      changeScene("EditTeamPage");
-    } catch (Exception e) {
-      System.out.println("Exception caught");
-    }
+    changeScene("EditTeamPage");
   }
 
   /**
@@ -245,87 +218,119 @@ public class CreateEventController extends Controller {
    * @return the date constructed by using the parameters
    */
   private Date getDate
-  (DatePicker datePicker, String timeHour, String timeMinute, MenuButton menuButton)
-      throws ParseException {
-    int year = datePicker.getValue().getYear();
-    int month = datePicker.getValue().getMonthValue();
-    int day = datePicker.getValue().getDayOfMonth();
+  (DatePicker datePicker, String timeHour, String timeMinute, MenuButton menuButton) {
+    try {
+      // Get integer values of year, month, and day
+      int year = datePicker.getValue().getYear();
+      int month = datePicker.getValue().getMonthValue();
+      int day = datePicker.getValue().getDayOfMonth();
 
-    String dateString =
-        "" + month + " " + day + ", " + year + " " + timeHour + ":" + timeMinute + " "
-            + menuButton.getText();
-    return dateFormatter.parse(dateString);
-  }
+      // Set date string that will be used to create date object
+      String dateString = "" + month +
+          " " + day +
+          ", " + year +
+          " " + timeHour +
+          ":" + timeMinute +
+          " " + menuButton.getText();
 
-  private boolean checkHoursAndMinutes() {
-    if (Integer.parseInt(startTimeHourTextField.getText()) < 1 ||
-        Integer.parseInt(startTimeHourTextField.getText()) > 12) {
-      messageNode.setText("Your start time hour is set to an incorrect value, please enter a" +
-          " value between 1 and 12");
-      return false;
+      // Return date object
+      return dateFormatter.parse(dateString);
+    } catch (ParseException parseException) {
+      System.out.println("Parse exception caught!");
+      return null;
     }
-
-    if (Integer.parseInt(endTimeHourTextField.getText()) < 1 ||
-        Integer.parseInt(endTimeHourTextField.getText()) > 12) {
-      messageNode.setText("Your end time hour is set to an incorrect value, please enter a" +
-          " value between 1 and 12");
-      return false;
-    }
-
-    if (Integer.parseInt(startTimeMinuteTextField.getText()) < 0 ||
-        Integer.parseInt(startTimeMinuteTextField.getText()) > 59) {
-      messageNode.setText("Your start time minute is set to an incorrect value, please enter a" +
-          " value between 0 and 59");
-      return false;
-    }
-
-    if (Integer.parseInt(endTimeMinuteTextField.getText()) < 0 ||
-        Integer.parseInt(endTimeMinuteTextField.getText()) > 59) {
-      messageNode.setText("Your end time minute is set to an incorrect value, please enter a" +
-          " value between 0 and 59");
-      return false;
-    }
-
-    return true;
   }
 
   /**
-   * Checks if the start date occurs before the end date
+   * Makes sure that hours and minutes text fields are set to their correct values
    *
-   * @param startDate start date
-   * @param endDate end date
-   * @return true if start date occurs before end date and false if otherwise
+   * @return false if value of at least one text field is incorrect true if they all have correct
+   * values
    */
-  private boolean checkDate(Date startDate, Date endDate) {
-    if (startDate.compareTo(new Date()) != 1) {
-      messageNode.setText("Start date has already passed");
+  private boolean checkHoursAndMinutes() {
+    try {
+      // If hour is not in between 1 and 12
+      if (Integer.parseInt(startTimeHourTextField.getText()) < 1 ||
+          Integer.parseInt(startTimeHourTextField.getText()) > 12) {
+        messageNode.setText("Your start time hour is set to an incorrect value, please enter a" +
+            " value between 1 and 12");
+        return false;
+      }
+
+      if (Integer.parseInt(endTimeHourTextField.getText()) < 1 ||
+          Integer.parseInt(endTimeHourTextField.getText()) > 12) {
+        messageNode.setText("Your end time hour is set to an incorrect value, please enter a" +
+            " value between 1 and 12");
+        return false;
+      }
+
+      // If minute is not in between 0 and 59
+      if (Integer.parseInt(startTimeMinuteTextField.getText()) < 0 ||
+          Integer.parseInt(startTimeMinuteTextField.getText()) > 59) {
+        messageNode.setText("Your start time minute is set to an incorrect value, please enter a" +
+            " value between 0 and 59");
+        return false;
+      }
+
+      if (Integer.parseInt(endTimeMinuteTextField.getText()) < 0 ||
+          Integer.parseInt(endTimeMinuteTextField.getText()) > 59) {
+        messageNode.setText("Your end time minute is set to an incorrect value, please enter a" +
+            " value between 0 and 59");
+        return false;
+      }
+
+      return true;
+    } catch (NumberFormatException imException) {
+      messageNode.setText("Only enter numbers in hour and minute text fields");
       return false;
     }
-
-    if (endDate.compareTo(startDate) != 1) {
-      messageNode.setText("End date occurs at the same time or before start date");
-      return false;
-    }
-
-    return true;
   }
 
+  /**
+   * This first checks if start date overlaps with another event's start and end date then, if date
+   * does overlap, will check if either teams involved are also involved in this event
+   *
+   * @param date date to check
+   * @return true if date overlaps with another event and said event contains either of the teams
+   * involved
+   */
   private boolean dateOverlaps(Date date) {
-    if (Event.events.size() > 0) {
-      for (Event event : Event.events) {
-        if (event.overlapDate(date) && event != Event.currentEvent) {
-          if (event.teamIsInvolved(((Manager) Account.currentUser).getTeam()) ||
-              (event.teamIsInvolved(teamsComboBox.getValue()))) {
-            return true;
-          }
+    // For every event
+    for (Event event : Event.events) {
+      // If date overlaps with event's start and end date and event is not the current event
+      if (event.overlapDate(date) && event != Event.currentEvent) {
+        // If one of the teams involved is also involved in event
+        if (event.teamIsInvolved(((Manager) Account.currentUser).getTeam()) ||
+            event.teamIsInvolved(teamsComboBox.getValue())) {
+          return true;
         }
       }
     }
 
+    // No overlap
     return false;
   }
 
-  public void setHourTextField(int hour, TextField textField, MenuButton menuButton) {
+  /**
+   * This makes sure that event name is not already in use by another event
+   *
+   * @param name event name to check
+   * @return true if event name is not taken false if otherwise
+   */
+  private boolean checkEventName(String name) {
+    Event event = Event.getEventByName(name);
+    return (event == null || (event == Event.currentEvent && editing));
+  }
+
+  /**
+   * When editing event and filling in event text fields make sure that event hours are the
+   * appropriate value
+   *
+   * @param hour integer value of hour to check
+   * @param textField text field to set
+   * @param menuButton menu button to set
+   */
+  private void setHourTextField(int hour, TextField textField, MenuButton menuButton) {
     if (hour == 0) {
       textField.setText("" + (hour + 12));
       menuButton.setText("AM");
@@ -352,9 +357,5 @@ public class CreateEventController extends Controller {
         startDatePicker.getValue() != null &&
         endDatePicker.getValue() != null &&
         !descriptionTextArea.getText().equals("");
-  }
-
-  public static void isEditiing(boolean beingEdited) {
-    editing = beingEdited;
   }
 }

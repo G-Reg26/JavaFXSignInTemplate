@@ -68,8 +68,9 @@
                 <ListView fx:id="eventListView" prefHeight="330.0" prefWidth="454.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                 <ButtonBar prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                   <buttons>
-                              <Button mnemonicParsing="false" onAction="#onCreateButtonClicked" text="Create" />
+                              <Button mnemonicParsing="false" onAction="#onCancelButtonClicked" prefHeight="11.0" text="Cancel" />
                     <Button mnemonicParsing="false" onAction="#onEditButtonClicked" text="Edit" />
+                              <Button mnemonicParsing="false" onAction="#onCreateButtonClicked" text="Create" />
                   </buttons>
                   <opaqueInsets>
                     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -90,7 +91,7 @@
       <children>
         <StackPane prefHeight="150.0" prefWidth="200.0">
           <children>
-            <ImageView fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="profilePic" fitHeight="95.0" fitWidth="95.0" pickOnBounds="true" preserveRatio="true">
               <image>
                 <Image url="@../Images/DefaultProfilePicTemp.png" />
               </image>
@@ -98,7 +99,7 @@
                 <Rectangle2D />
               </viewport>
             </ImageView>
-            <ImageView fitHeight="115.0" fitWidth="115.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
               <image>
                 <Image url="@../Images/DefaultProfilePicBorder.png" />
               </image>
@@ -106,11 +107,11 @@
                 <Rectangle2D />
               </viewport>
             </ImageView>
-            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="20.0" prefWidth="25.0" text="..." StackPane.alignment="BOTTOM_RIGHT" />
+            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#editTeamImageView" text="..." StackPane.alignment="BOTTOM_RIGHT" />
           </children>
         </StackPane>
-        <TextField promptText="Team Name" />
-        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="115.0" text="Set Name" />
+        <TextField fx:id="changeNameTextField" promptText="Team Name" />
+        <Button mnemonicParsing="false" onAction="#onChangeNameButtonClicked" prefHeight="50.0" prefWidth="115.0" text="Set Name" />
         <VBox alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="116.0" spacing="10.0" />
       </children>
       <padding>

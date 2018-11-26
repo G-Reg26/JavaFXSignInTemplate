@@ -10,7 +10,6 @@ public class News implements Comparable<News>, StoredInformation {
   private ArrayList<Team> teamsInvolved = new ArrayList<>();
 
   private String news;
-
   private Date date;
 
   public News() {
@@ -23,12 +22,8 @@ public class News implements Comparable<News>, StoredInformation {
     this.news = news;
   }
 
-  public void setNews(String theNews) {
-    news = theNews;
-  }
-
-  public void setDate(Date theDate) {
-    date = theDate;
+  public ArrayList<Team> getTeamsInvolved() {
+    return teamsInvolved;
   }
 
   public String getNews() {
@@ -39,14 +34,38 @@ public class News implements Comparable<News>, StoredInformation {
     return date;
   }
 
+  public void setNews(String theNews) {
+    news = theNews;
+  }
+
+  public void setDate(Date theDate) {
+    date = theDate;
+  }
+
+  /**
+   * Add team to teams involved list
+   *
+   * @param team team to add to list
+   */
   public void addTeamInvolved(Team team) {
     teamsInvolved.add(team);
   }
 
+  /**
+   * Check if team is involved in the specific news object
+   *
+   * @param team team to check if it's involved
+   * @return team that is involved
+   */
   public boolean teamIsInvolved(Team team) {
     return teamsInvolved.contains(team);
   }
 
+  /**
+   * Adds string objects of each attribute of an instance of news to an array list
+   *
+   * @param list the list that string objects will be added to
+   */
   public void getObjectData(ArrayList<String> list) {
     list.add("News:" + news);
     list.add("Date:" + date.toString());
@@ -60,7 +79,6 @@ public class News implements Comparable<News>, StoredInformation {
     list.add("end");
   }
 
-  @Override
   public int compareTo(News news) {
     return date.compareTo(news.getDate());
   }

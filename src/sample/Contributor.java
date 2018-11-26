@@ -25,26 +25,16 @@ public class Contributor extends Account {
     this.team = team;
   }
 
-  /***
-   * Getter method for team
-   *
-   * @return team attribute of an instance of contributor
-   */
   public Team getTeam() {
     return team;
   }
 
-  /***
-   * Setter method for team
-   *
-   * @param team the team attribute will be set to this parameter
-   */
   public void setTeam(Team team) {
     this.team = team;
   }
 
-  /***
-   * Adds string objects of each attribute of an instance of team to an array list
+  /**
+   * Adds string objects of each attribute of an instance of contributor to an array list
    *
    * @param list the list that string objects will be added to
    */

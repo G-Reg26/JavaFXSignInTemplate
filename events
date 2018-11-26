@@ -1,0 +1,24 @@
+Organizer:aCunningHam
+Name:The Great Georges Vs The Ridiculous Richards
+Location:Alico Arena
+StartDate:Thu Nov 22 17:00:00 EST 2018
+EndDate:Fri Nov 23 00:00:00 EST 2018
+Description:Admission: Free!!!
+Team1:Great Georges
+Team2:Ridiculous Richards
+Team1Score:0
+Team2Score:0
+Active:true
+event end
+Organizer:geo
+Name:The Gregos Vs The Adubs
+Location:Alico Arena
+StartDate:Sun Nov 25 17:00:00 EST 2018
+EndDate:Mon Nov 26 00:00:00 EST 2018
+Description:Admission: Free!!!
+Team1:Gregos
+Team2:adubs
+Team1Score:42
+Team2Score:36
+Active:false
+event end
