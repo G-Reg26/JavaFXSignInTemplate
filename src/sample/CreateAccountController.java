@@ -398,8 +398,7 @@ public class CreateAccountController extends Controller {
   /**
    * confirms that the reentered password matches the original password textfield
    *
-   * @return true if the text in password and confirm password match, and false if they do not
-   * match
+   * @return true if the text in password and confirm password match, and false if they do not match
    */
   public boolean confirmPasswords() {
     return password.getText().equals(confirmPassword.getText());
@@ -423,9 +422,8 @@ public class CreateAccountController extends Controller {
   }
 
   /**
-   * This method creates an account and, if account type is MANAGER, a team using the text from
-   * the text fields in this scene. Created teams and accounts are then added to their respective
-   * lists
+   * This method creates an account and, if account type is MANAGER, a team using the text from the
+   * text fields in this scene. Created teams and accounts are then added to their respective lists
    */
   public void createAccount() {
     // Get text from text textFields and create a new account with them
@@ -448,10 +446,13 @@ public class CreateAccountController extends Controller {
         Account.currentUser =
             new Manager(name.getText(), userName.getText(), password.getText(), accountType, team);
 
+        team.setManager((Manager) Account.currentUser);
+
         // Create and add a new news object to news list
         News tempNews = new News(
             userName.getText() + " has just made a new team, the " + teamName.getText() + ".",
             new Date());
+        tempNews.addTeamInvolved(team);
         News.newsList.add(tempNews);
         break;
     }

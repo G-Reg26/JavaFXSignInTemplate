@@ -11,6 +11,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javax.imageio.ImageIO;
 
 public class EditTeamController extends Controller {
@@ -44,6 +46,10 @@ public class EditTeamController extends Controller {
 
   @FXML
   private void initialize() {
+    // Initialize pop up stage
+    popUpStage = new Stage();
+    popUpStage.initModality(Modality.APPLICATION_MODAL);
+
     updateLists();
 
     image = SwingFXUtils.toFXImage(Team.currentTeam.getProfilePic(), null);
@@ -153,7 +159,7 @@ public class EditTeamController extends Controller {
   }
 
   /**
-   *  This handles what happens when the cancel button is clicked
+   * This handles what happens when the cancel button is clicked
    */
   @FXML
   private void onCancelButtonClicked() {
@@ -171,7 +177,7 @@ public class EditTeamController extends Controller {
   }
 
   /**
-   *  This handles what happens when the change name button is clicked
+   * This handles what happens when the change name button is clicked
    */
   @FXML
   private void onChangeNameButtonClicked() {
@@ -187,6 +193,10 @@ public class EditTeamController extends Controller {
         File newFile = new File
             (".\\src\\sample\\Images\\TeamProfilePics\\" + Team.currentTeam.getName() + ".png");
         Team.currentTeam.getProfilePicFile().renameTo(newFile);
+      } else {
+        MessageBoxController.messageString = "Team name is already taken.";
+        changeNameTextField.setText("");
+        loadPopUpScene("FXMLDocs/MessageBox.fxml", "");
       }
     }
   }
@@ -214,7 +224,9 @@ public class EditTeamController extends Controller {
 
         profilePic.setImage(image);
       } else {
-        System.out.println("Wrong file type");
+        MessageBoxController.messageString = "Wrong file type.";
+        changeNameTextField.setText("");
+        loadPopUpScene("FXMLDocs/MessageBox.fxml", "");
       }
     } catch (IOException ioException) {
       System.out.println("Input/Output exception caught");

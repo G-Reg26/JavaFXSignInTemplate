@@ -116,8 +116,8 @@ public class HomePageController extends Controller {
         // Fill list of upcoming events with events that occur after today
         Collections.sort(Event.events);
 
-        for (Event event : Event.events){
-          if (event.getStartDateDate().after(today)){
+        for (Event event : Event.events) {
+          if (event.getStartDateDate().after(today)) {
             upcomingEvents.add(event);
           }
         }
@@ -136,14 +136,12 @@ public class HomePageController extends Controller {
           currentEventName.setText(upcomingEvents.get(0).getName());
           team1Score.setText("T1:" + upcomingEvents.get(0).getEventScore().getScore(0));
           team2Score.setText("T2:" + upcomingEvents.get(0).getEventScore().getScore(1));
-        } else {
-          events[0] = "No upcoming events";
-          currentEventName.setText("No upcoming events");
-          team1Score.setText("");
-          team2Score.setText("");
         }
       } else {
         events[0] = "No upcoming events";
+        currentEventName.setText("No upcoming events");
+        team1Score.setText("");
+        team2Score.setText("");
       }
 
       // Set username text as guest and disable the following buttons:
@@ -251,6 +249,11 @@ public class HomePageController extends Controller {
           team1Score.setText("");
           team2Score.setText("");
         }
+      } else {
+        events[0] = "No upcoming events in follow list";
+        currentEventName.setText("No upcoming events");
+        team1Score.setText("");
+        team2Score.setText("");
       }
 
       // If a user has signed in set username label to the username of the currently signed in

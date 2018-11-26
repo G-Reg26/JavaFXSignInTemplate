@@ -1,76 +1,36 @@
 Type:MANAGER
-User:richy
-Name:Eugene Richards
+User:grego
+Name:Gregorio Lozada
 Password:123
-Team:Ridiculous Richards
-user end
-Type:MANAGER
-User:aCunningHam
-Name:George Cunningham
-Password:123
-Team:Great Georges
+Team:Gregs
 user end
 Type:MANAGER
 User:adubs
-Name:Andrew
-Password:1234
-Team:adubs
-user end
-Type:PLAYER
-User:placeHolder
-Name:Player Smith
+Name:Andrew Wilson
 Password:123
-Team:Great Georges
+Team:Adubs
 user end
 Type:PLAYER
 User:chutol29
 Name:Jesus Lozada
 Password:123
-Team:Gregos
+TeamRequested:Gregs
 user end
 Type:PLAYER
-User:glowManMarc
-Name:Marco Amini
-Password:123
-Team:Gregos
-user end
-Type:PLAYER
-User:Slamchez
+User:slamchez
 Name:Carlos Sanchez
 Password:123
+TeamRequested:Gregs
 user end
 Type:PLAYER
-User:deenomartini
-Name:Martin
-Password:lol
-Team:Gregos
-user end
-Type:SPECTATOR
-User:ness
-Name:Ness
+User:camilster
+Name:Camilo Mendoza
 Password:123
-user end
-Type:SPECTATOR
-User:LarryGary
-Name:Gary Cusack
-Password:123
-user end
-Type:MANAGER
-User:geo
-Name:Gregorio Lozada
-Password:123
-Team:Gregos
-user end
-Type:SPECTATOR
-User:grego
-Name:Gregorio Lozada
-Password:123
+TeamRequested:Gregs
 user end
 Type:PLAYER
-User:grego2
-Name:Gregorio Lozada
+User:hoot
+Name:Pierre Paul
 Password:123
-Teams followed:
-Gregos
-Teams followed end
+TeamRequested:Gregs
 user end
