@@ -92,6 +92,16 @@ public abstract class Controller {
   }
 
   /**
+   * Makes sure file is a supported image type
+   *
+   * @param filename name of file to check
+   * @return if file is a png return true false if otherwise
+   */
+  protected boolean supportedImageType(String filename){
+    return (filename.substring(filename.indexOf(".") + 1).equals("png"));
+  }
+
+  /**
    * As the user types in the text field passed a drop down menu will come up to auto fill the text
    * field
    *

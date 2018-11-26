@@ -202,7 +202,7 @@ public class EditTeamController extends Controller {
 
     try {
       // If file is not null and file type is a supported type (at the moment only png)
-      if (file != null && supportedImageType(file.getName())) {
+      if (supportedImageType(file.getName())) {
         // Copy contents of file to current team's profile pic file
         FileManager.copyToFile(file, Team.currentTeam.getProfilePicFile());
 
@@ -219,16 +219,6 @@ public class EditTeamController extends Controller {
     } catch (IOException ioException) {
       System.out.println("Input/Output exception caught");
     }
-  }
-
-  /**
-   * Makes sure file is a supported image type
-   *
-   * @param filename name of file to check
-   * @return if file is a png return true false if otherwise
-   */
-  private boolean supportedImageType(String filename){
-    return (filename.substring(filename.indexOf(".") + 1).equals("png"));
   }
 
   /**

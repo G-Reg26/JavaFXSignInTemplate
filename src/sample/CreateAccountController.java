@@ -279,12 +279,10 @@ public class CreateAccountController extends Controller {
   private void onChangeProfilePicButtonClicked() {
     // Set profile pic file to the file chosen in file chooser
     profilePicFile = fileChooser.showOpenDialog(popUpStage);
-    String profilePicFileName = profilePicFile.getName();
 
     try {
       // If profile pic is not null and is a png file
-      if (profilePicFile != null &&
-          profilePicFileName.substring(profilePicFile.getName().indexOf(".") + 1).equals("png")) {
+      if (supportedImageType(profilePicFile.getName())) {
         // Set profile pic to png file
         image = SwingFXUtils.toFXImage(ImageIO.read(profilePicFile), null);
         profilePic.setImage(image);
