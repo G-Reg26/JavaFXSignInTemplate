@@ -235,6 +235,7 @@ public class TeamPageController extends Controller {
    */
   @FXML
   private void onHomePageButtonClicked() {
+    Team.currentTeam = null;
     changeScene("HomePageController");
   }
 
