@@ -1,5 +1,9 @@
+@font-face {
+  src: url('../Fonts/scoreboard.ttf');
+}
+
 .root{
-  -fx-background-image: url('../Images/BG_BT.png')
+  -fx-background-image: url('../Images/BG_BT.png');
 }
 
 .button {
@@ -14,7 +18,26 @@
   -fx-background-color: linear-gradient(#14118e, #625fc6);
 }
 
-.label{
-  -fx-text-fill: BLACK;
+#Label_Title{
+  -fx-font-weight: BOLD;
+}
+
+#Label_Event{
   -fx-font-size: 16 px;
+  -fx-text-fill: BLACK;
+}
+
+#Label_Username{
+  -fx-font-size: 16 px;
+  -fx-text-fill: BLACK;
+}
+
+#Text_News {
+  -fx-text-fill: BLACK;
+  -fx-font-size: 16px;
+}
+
+#Score{
+  -fx-font-family: 'Score Board';
+  -fx-font-size: 24px;
 }

@@ -16,93 +16,80 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-  minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" vgap="10.0"
-  xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"
-  fx:controller="sample.CreateEventController">
+<GridPane hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../CSSDocs/createEvent.css" vgap="10.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.CreateEventController">
   <columnConstraints>
-    <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="400.0"/>
+    <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="400.0" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS"/>
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS"/>
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS"/>
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS"/>
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS"/>
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS"/>
-    <RowConstraints minHeight="10.0" prefHeight="50.0" valignment="TOP" vgrow="ALWAYS"/>
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS"/>
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS"/>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+    <RowConstraints minHeight="10.0" prefHeight="50.0" valignment="TOP" vgrow="ALWAYS" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
   </rowConstraints>
   <children>
-    <TextField fx:id="eventNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-    <Label text="Event Name:" GridPane.rowIndex="1"/>
-    <Label text="Location:" GridPane.rowIndex="2"/>
-    <TextField fx:id="locationTextField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-    <Label text="[Team Name] Vs." GridPane.rowIndex="5"/>
-    <ComboBox fx:id="teamsComboBox" prefWidth="150.0" GridPane.columnIndex="1"
-      GridPane.rowIndex="5"/>
+    <TextField fx:id="eventNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    <Label text="Event Name:" GridPane.rowIndex="1" />
+    <Label text="Location:" GridPane.rowIndex="2" />
+    <TextField fx:id="locationTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+    <Label text="[Team Name] Vs." GridPane.rowIndex="5" />
+    <ComboBox fx:id="teamsComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
     <Label text="Create Event" GridPane.columnSpan="2">
       <font>
-        <Font name="System Bold" size="18.0"/>
+        <Font name="System Bold" size="18.0" />
       </font>
     </Label>
-    <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1"
-      GridPane.rowIndex="8">
+    <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
       <children>
-        <Text fx:id="messageNode" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT"/>
+        <Text fx:id="messageNode" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" />
       </children>
     </HBox>
-    <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1"
-      GridPane.rowIndex="7">
+    <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
       <children>
-        <Button mnemonicParsing="false" onAction="#onCreateEventButtonClicked" text="Create Event"/>
+        <Button mnemonicParsing="false" onAction="#onCreateEventButtonClicked" text="Create Event" />
       </children>
     </HBox>
-    <Label text="Start Date:" GridPane.rowIndex="3"/>
+    <Label text="Start Date:" GridPane.rowIndex="3" />
     <HBox alignment="CENTER_LEFT" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
       <children>
-        <DatePicker fx:id="startDatePicker" editable="false"/>
-        <TextField fx:id="startTimeHourTextField" alignment="CENTER" prefHeight="26.0"
-          prefWidth="45.0" promptText="00"/>
-        <Label text=":"/>
-        <TextField fx:id="startTimeMinuteTextField" alignment="CENTER" prefHeight="26.0"
-          prefWidth="45.0" promptText="00"/>
+        <DatePicker fx:id="startDatePicker" editable="false" />
+        <TextField fx:id="startTimeHourTextField" alignment="CENTER" prefHeight="26.0" prefWidth="45.0" promptText="00" />
+        <Label text=":" />
+        <TextField fx:id="startTimeMinuteTextField" alignment="CENTER" prefHeight="26.0" prefWidth="45.0" promptText="00" />
         <MenuButton fx:id="startMenuButton" mnemonicParsing="false" text="PM">
           <items>
-            <MenuItem fx:id="startPMMenuItem" mnemonicParsing="false" text="PM"/>
-            <MenuItem fx:id="startAMMenuItem" mnemonicParsing="false" text="AM"/>
+            <MenuItem fx:id="startPMMenuItem" mnemonicParsing="false" text="PM" />
+            <MenuItem fx:id="startAMMenuItem" mnemonicParsing="false" text="AM" />
           </items>
         </MenuButton>
-        <Label text="to"/>
+        <Label text="to" />
       </children>
     </HBox>
-    <TextArea fx:id="descriptionTextArea" prefHeight="200.0" prefWidth="200.0"
-      GridPane.columnIndex="1" GridPane.rowIndex="6"/>
-    <Label text="Event Description:" GridPane.rowIndex="6"/>
-    <Label text="End Date:" GridPane.rowIndex="4"/>
-    <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1"
-      GridPane.rowIndex="4">
+    <TextArea fx:id="descriptionTextArea" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+    <Label text="Event Description:" GridPane.rowIndex="6" />
+    <Label text="End Date:" GridPane.rowIndex="4" />
+    <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
       <children>
-        <DatePicker fx:id="endDatePicker" editable="false"/>
-        <TextField fx:id="endTimeHourTextField" alignment="CENTER" prefHeight="26.0"
-          prefWidth="45.0" promptText="00"/>
-        <Label text=":"/>
-        <TextField fx:id="endTimeMinuteTextField" alignment="CENTER" prefHeight="26.0"
-          prefWidth="45.0" promptText="00"/>
+        <DatePicker fx:id="endDatePicker" editable="false" />
+        <TextField fx:id="endTimeHourTextField" alignment="CENTER" prefHeight="26.0" prefWidth="45.0" promptText="00" />
+        <Label text=":" />
+        <TextField fx:id="endTimeMinuteTextField" alignment="CENTER" prefHeight="26.0" prefWidth="45.0" promptText="00" />
         <MenuButton fx:id="endMenuButton" mnemonicParsing="false" text="PM">
           <items>
-            <MenuItem fx:id="endPMMenuItem" mnemonicParsing="false" text="PM"/>
-            <MenuItem fx:id="endAMMenuItem" mnemonicParsing="false" text="AM"/>
+            <MenuItem fx:id="endPMMenuItem" mnemonicParsing="false" text="PM" />
+            <MenuItem fx:id="endAMMenuItem" mnemonicParsing="false" text="AM" />
           </items>
         </MenuButton>
       </children>
     </HBox>
-    <Button mnemonicParsing="false" onAction="#onBackToEditTeamButtonClicked"
-      text="Back To Edit Team Page" GridPane.columnSpan="2" GridPane.rowIndex="7"/>
+    <Button mnemonicParsing="false" onAction="#onBackToEditTeamButtonClicked" text="Back To Edit Team Page" GridPane.columnSpan="2" GridPane.rowIndex="7" />
   </children>
   <padding>
-    <Insets bottom="10.0" left="20.0" right="20.0" top="20.0"/>
+    <Insets bottom="10.0" left="20.0" right="20.0" top="20.0" />
   </padding>
 </GridPane>

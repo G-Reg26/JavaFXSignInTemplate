@@ -14,10 +14,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane alignment="center" hgap="10.0" prefHeight="400.0" prefWidth="600.0" styleClass="root" vgap="10.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.CreateAccountController">
+<GridPane alignment="center" hgap="10.0" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../CSSDocs/createAccount.css" vgap="10.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.CreateAccountController">
   <Text id="welcome-text" text="Create Account" GridPane.columnSpan="2">
     <font>
       <Font name="System Bold" size="20.0" />
@@ -54,11 +55,7 @@
   <TextField fx:id="teamName" disable="true" GridPane.columnIndex="2" GridPane.rowIndex="6" />
   <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="1" GridPane.rowSpan="4">
     <children>
-      <ImageView fx:id="profilePic" fitHeight="95.0" fitWidth="95.0" pickOnBounds="true" preserveRatio="true">
-        <image>
-          <Image url="@../Images/DefaultProfilePicTemp.png" />
-        </image>
-      </ImageView>
+         <Circle fx:id="profilePic" fill="#1f96ff" radius="47.5" stroke="BLACK" strokeType="INSIDE" />
       <ImageView fitHeight="125.0" fitWidth="125.0" layoutX="24.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
         <image>
           <Image url="@../Images/DefaultProfilePicBorder.png" />

@@ -24,6 +24,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javax.imageio.ImageIO;
 import sample.Account.AccountType;
@@ -56,7 +58,7 @@ public class CreateAccountController extends Controller {
   private MenuButton menuButton;
 
   @FXML
-  private ImageView profilePic;
+  private Circle profilePic;
 
   private Image image;
 
@@ -75,6 +77,8 @@ public class CreateAccountController extends Controller {
     if (!editing) {
       menuButton.setText("Spectator");
       accountType = SPECTATOR;
+
+      image = SwingFXUtils.toFXImage(Account.defaultProfilePic, null);
     } else {
       name.setPromptText("Change name");
       userName.setPromptText("Change username");
@@ -102,8 +106,9 @@ public class CreateAccountController extends Controller {
       }
 
       image = SwingFXUtils.toFXImage(Account.currentUser.getProfilePic(), null);
-      profilePic.setImage(image);
     }
+
+    profilePic.setFill(new ImagePattern(image));
   }
 
   /**
@@ -285,7 +290,7 @@ public class CreateAccountController extends Controller {
       if (supportedImageType(profilePicFile.getName())) {
         // Set profile pic to png file
         image = SwingFXUtils.toFXImage(ImageIO.read(profilePicFile), null);
-        profilePic.setImage(image);
+        profilePic.setFill(new ImagePattern(image));
       } else {
         actionTarget.setText("File chosen is the wrong file type");
       }

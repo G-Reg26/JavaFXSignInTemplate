@@ -15,8 +15,9 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.EditTeamController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../CSSDocs/editTeam.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.EditTeamController">
   <right>
     <TabPane maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="400.0" prefWidth="475.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
       <tabs>
@@ -91,14 +92,7 @@
       <children>
         <StackPane prefHeight="150.0" prefWidth="200.0">
           <children>
-            <ImageView fx:id="profilePic" fitHeight="95.0" fitWidth="95.0" pickOnBounds="true" preserveRatio="true">
-              <image>
-                <Image url="@../Images/DefaultProfilePicTemp.png" />
-              </image>
-              <viewport>
-                <Rectangle2D />
-              </viewport>
-            </ImageView>
+                  <Circle fx:id="profilePic" fill="DODGERBLUE" radius="47.5" stroke="BLACK" strokeType="INSIDE" />
             <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
               <image>
                 <Image url="@../Images/DefaultProfilePicBorder.png" />

@@ -11,6 +11,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
@@ -30,7 +32,7 @@ public class EditTeamController extends Controller {
   private TextField changeNameTextField;
 
   @FXML
-  private ImageView profilePic;
+  private Circle profilePic;
 
   private Image image;
 
@@ -53,8 +55,7 @@ public class EditTeamController extends Controller {
     updateLists();
 
     image = SwingFXUtils.toFXImage(Team.currentTeam.getProfilePic(), null);
-
-    profilePic.setImage(image);
+    profilePic.setFill(new ImagePattern(image));
 
     teamListView.getSelectionModel().selectedItemProperty()
         .addListener((observable, oldValue, newValue) -> selectedPlayer = newValue);
@@ -221,8 +222,7 @@ public class EditTeamController extends Controller {
 
         // Set the profile pic image view
         image = SwingFXUtils.toFXImage(Team.currentTeam.getProfilePic(), null);
-
-        profilePic.setImage(image);
+        profilePic.setFill(new ImagePattern(image));
       } else {
         MessageBoxController.messageString = "Wrong file type.";
         changeNameTextField.setText("");

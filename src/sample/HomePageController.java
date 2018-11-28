@@ -12,6 +12,8 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -67,7 +69,7 @@ public class HomePageController extends Controller {
   private ContextMenu contextMenu;
 
   @FXML
-  private ImageView profilePic;
+  private Circle profilePic;
 
   private Image image;
 
@@ -95,6 +97,9 @@ public class HomePageController extends Controller {
 
     // If user has yet to sign in
     if (Account.currentUser == null) {
+      // Set profile pic image view
+      image = SwingFXUtils.toFXImage(Account.defaultProfilePic, null);
+
       // If news list is not empty
       if (News.newsList.size() > 0) {
         // Fill news text nodes with the five latest news headlines
@@ -134,8 +139,8 @@ public class HomePageController extends Controller {
         // If upcoming events list is not empty
         if (upcomingEvents.size() > 0) {
           currentEventName.setText(upcomingEvents.get(0).getName());
-          team1Score.setText("T1:" + upcomingEvents.get(0).getEventScore().getScore(0));
-          team2Score.setText("T2:" + upcomingEvents.get(0).getEventScore().getScore(1));
+          team1Score.setText("" + upcomingEvents.get(0).getEventScore().getScore(0));
+          team2Score.setText("" + upcomingEvents.get(0).getEventScore().getScore(1));
         }
       } else {
         events[0] = "No upcoming events";
@@ -159,7 +164,6 @@ public class HomePageController extends Controller {
     } else {
       // Set profile pic image view
       image = SwingFXUtils.toFXImage(Account.currentUser.getProfilePic(), null);
-      profilePic.setImage(image);
 
       // If news list is not empty
       if (News.newsList.size() > 0) {
@@ -241,8 +245,8 @@ public class HomePageController extends Controller {
           }
 
           currentEventName.setText(upcomingEvents.get(0).getName());
-          team1Score.setText("T1:" + upcomingEvents.get(0).getEventScore().getScore(0));
-          team2Score.setText("T2:" + upcomingEvents.get(0).getEventScore().getScore(1));
+          team1Score.setText("" + upcomingEvents.get(0).getEventScore().getScore(0));
+          team2Score.setText("" + upcomingEvents.get(0).getEventScore().getScore(1));
         } else {
           events[0] = "No upcoming events in follow list";
           currentEventName.setText("No upcoming events");
@@ -285,6 +289,8 @@ public class HomePageController extends Controller {
 
     xOffset = 450.0f;
     yOffset = 65.0f;
+
+    profilePic.setFill(new ImagePattern(image));
 
     setTeamSearchBarDropDownMenu(teamSearchBar, contextMenu, xOffset, yOffset);
   }

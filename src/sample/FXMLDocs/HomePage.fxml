@@ -17,23 +17,17 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" snapToPixel="false" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.HomePageController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" snapToPixel="false" stylesheets="@../CSSDocs/homePage.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.HomePageController">
   <left>
     <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="360.0" prefWidth="130.0" scaleShape="false" snapToPixel="false" spacing="8.0" BorderPane.alignment="TOP_CENTER">
       <children>
         <StackPane prefHeight="150.0" prefWidth="200.0">
           <children>
-            <ImageView fx:id="profilePic" fitHeight="95.0" fitWidth="95.0" pickOnBounds="true" preserveRatio="true">
-              <image>
-                <Image url="@../Images/DefaultProfilePicTemp.png" />
-              </image>
-              <viewport>
-                <Rectangle2D />
-              </viewport>
-            </ImageView>
+                  <Circle fx:id="profilePic" fill="DODGERBLUE" radius="47.5" stroke="BLACK" strokeType="INSIDE" />
             <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
               <image>
                 <Image url="@../Images/DefaultProfilePicBorder.png" />
@@ -46,7 +40,7 @@
         </StackPane>
         <Label fx:id="userName" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="100.0" text="[Username]" textAlignment="CENTER" VBox.vgrow="ALWAYS">
           <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="System Bold" size="18.0" />
           </font>
         </Label>
         <Button fx:id="followingButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onFollowingButtonClicked" prefHeight="30.0" prefWidth="120.0" text="Following" VBox.vgrow="ALWAYS" />
@@ -93,17 +87,17 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
               <children>
-                <Label fx:id="team1Score" text="T1: 0">
+                <Label id="Score" fx:id="team1Score" text="0">
                            <font>
                               <Font size="12.0" />
                            </font></Label>
-                <Label fx:id="team2Score" text="T2: 0" GridPane.columnIndex="2">
+                <Label id="Score" fx:id="team2Score" text="0" GridPane.columnIndex="2">
                            <font>
                               <Font size="12.0" />
                            </font></Label>
                 <Label fx:id="currentEventName" text="[EventName]" GridPane.columnIndex="1">
                            <font>
-                              <Font size="12.0" />
+                              <Font name="System Bold" size="14.0" />
                            </font></Label>
               </children>
             </GridPane>

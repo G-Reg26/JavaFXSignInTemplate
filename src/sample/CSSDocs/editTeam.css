@@ -1,0 +1,30 @@
+.root {
+  -fx-background-image: url('../Images/BG_BT.png');
+}
+
+.button {
+  -fx-text-fill: WHITE;
+  -fx-font-family: "System";
+  -fx-font-weight: BOLD;
+  -fx-background-color: linear-gradient(#625fc6, #14118e);
+  -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+
+.button:hover {
+  -fx-background-color: linear-gradient(#14118e, #625fc6);
+}
+
+#Button_Selection {
+  -fx-font-family: "System";
+  -fx-font-weight: BOLD;
+  -fx-background-color: linear-gradient(#d8e7ff, #7264d6);
+  -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+
+#Button_Selection:hover {
+  -fx-background-color: linear-gradient(#7264d6, #d8e7ff);
+}
+
+#Button_Change{
+  -fx-background-color: TRANSPARENT;
+}

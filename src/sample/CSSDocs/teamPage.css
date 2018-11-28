@@ -1,5 +1,5 @@
-.root{
-  -fx-background-image: url('../Images/BG_BT.png')
+.root {
+  -fx-background-image: url('../Images/BG_BT.png');
 }
 
 .button {
@@ -14,7 +14,8 @@
   -fx-background-color: linear-gradient(#14118e, #625fc6);
 }
 
-.label{
-  -fx-text-fill: BLACK;
+#Label_Title {
   -fx-font-size: 16 px;
+  -fx-text-fill: BLACK;
+  -fx-font-weight: BOLD;
 }

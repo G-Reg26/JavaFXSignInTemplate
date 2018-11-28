@@ -13,6 +13,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -42,7 +44,7 @@ public class TeamPageController extends Controller {
   private Button follow_Edit_Button;
 
   @FXML
-  private ImageView profilePic;
+  private Circle profilePic;
 
   private Image image;
 
@@ -64,7 +66,7 @@ public class TeamPageController extends Controller {
 
     // Set image view profile pic
     image = SwingFXUtils.toFXImage(Team.currentTeam.getProfilePic(), null);
-    profilePic.setImage(image);
+    profilePic.setFill(new ImagePattern(image));
 
     // If current user is not null
     if (Account.currentUser != null) {
@@ -233,7 +235,7 @@ public class TeamPageController extends Controller {
    */
   @FXML
   private void onHomePageButtonClicked() {
-      changeScene("HomePageController");
+    changeScene("HomePageController");
   }
 
   /**

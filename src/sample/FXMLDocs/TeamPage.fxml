@@ -15,20 +15,17 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.TeamPageController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../CSSDocs/teamPage.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.TeamPageController">
   <left>
     <VBox alignment="CENTER" prefHeight="400.0" prefWidth="162.0" spacing="10.0" BorderPane.alignment="CENTER">
       <children>
         <StackPane prefHeight="150.0" prefWidth="200.0">
           <children>
-            <ImageView fx:id="profilePic" fitHeight="95.0" fitWidth="95.0" pickOnBounds="true" preserveRatio="true">
-              <image>
-                <Image url="@../Images/DefaultProfilePicTemp.png" />
-              </image>
-            </ImageView>
+                  <Circle fx:id="profilePic" fill="DODGERBLUE" radius="47.5" stroke="BLACK" strokeType="INSIDE" />
             <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
               <image>
                 <Image url="@../Images/DefaultProfilePicBorder.png" />
