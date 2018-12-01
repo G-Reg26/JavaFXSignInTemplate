@@ -1,5 +1,5 @@
-# JavaFXSignInTemplate
-Software Engineering Fundamentals Project
+# Software Engineering Fundamentals Project
+Semester long project for the course Software Engineering Fundamentals
 # About
 This program is a recreational sports league management system. Users can create acounts of 
 different tiers, spectator, player, or team manager. All accounts can follow teams, view 
