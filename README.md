@@ -12,6 +12,7 @@ can set up teams and events, as well as update their team's scores.
 ![alt text](https://github.com/G-Reg26/SoftwareEngineeringFundamentalsProject/blob/master/src/sample/Images/WhereToMoveFiles.png)
 4. Copy all the contents of the unzipped project and paste it into base project folder
 5. Navigate to Images folder in the unzipped project (src\sample\Images)
+![alt text](https://github.com/G-Reg26/SoftwareEngineeringFundamentalsProject/blob/master/src/sample/Images/WhereToMoveProfilePics.png)
 6. Copy the AccountProfilePics and TeamProfilePics folders and paste it into the Images folder in the base project
 # Known Issues/Limitations
 - Text files that back up data can be manipulated externally
