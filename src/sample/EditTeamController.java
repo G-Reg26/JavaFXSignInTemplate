@@ -1,3 +1,15 @@
+/**
+ * The EditTeamController class is the controller for the EditTeam fxml file. This
+ * controller handles all the nodes and behaviors in the JavaFX scene. Managers can edit their
+ * team's name and profile picture as well as add/remove players from their team, deny player join
+ * requests, and create/edit/cancel their events.
+ *
+ * @author Jake Sherman
+ * @modified Gregorio Lozada
+ * @version 1.0
+ * @since 11/3/2018
+ */
+
 package sample;
 
 import java.io.File;
@@ -10,7 +22,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
@@ -194,6 +205,10 @@ public class EditTeamController extends Controller {
         File newFile = new File
             (".\\src\\sample\\Images\\TeamProfilePics\\" + Team.currentTeam.getName() + ".png");
         Team.currentTeam.getProfilePicFile().renameTo(newFile);
+
+        MessageBoxController.messageString = "Team name has been changed.";
+        changeNameTextField.setText("");
+        loadPopUpScene("FXMLDocs/MessageBox.fxml", "");
       } else {
         MessageBoxController.messageString = "Team name is already taken.";
         changeNameTextField.setText("");

@@ -1,3 +1,14 @@
+/**
+ * The TeamsFollowedController class is the controller for the TeamsFollowed fxml file. This
+ * controller handles all the nodes and behaviors in the JavaFX scene. This class sets the list
+ * items as the teams the current user is following, and gives them an on action function that, when
+ * clicked, the user will be taken to that team's page.
+ *
+ * @author Jordan Sasek
+ * @version 1.0
+ * @since 10/24/2018
+ */
+
 package sample;
 
 import javafx.beans.value.ChangeListener;
@@ -15,7 +26,7 @@ public class TeamsFollowedController extends Controller {
   @FXML
   private ListView<Team> listView;
 
-  /***
+  /**
    * Show list of teams that the current user follows
    */
   @FXML
@@ -32,11 +43,7 @@ public class TeamsFollowedController extends Controller {
         // Set current team to the
         Team.currentTeam = newValue;
 
-        try {
-          changeScene("TeamPage");
-        } catch (Exception e) {
-          System.out.println("Exception Caught");
-        }
+        changeScene("TeamPage");
 
         // Close stage
         Stage stage = (Stage) listView.getScene().getWindow();

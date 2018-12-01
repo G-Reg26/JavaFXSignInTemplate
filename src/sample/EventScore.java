@@ -1,3 +1,12 @@
+/**
+ * The EventScore class is the blueprint used for event scores. The class sets scores for the
+ * individual teams involved and increments/decrements them.
+ *
+ * @author Jordan Moses
+ * @version 1.0
+ * @since 10/21/2018
+ */
+
 package sample;
 
 public class EventScore {

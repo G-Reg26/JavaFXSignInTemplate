@@ -1,3 +1,13 @@
+/**
+ * The HomePageController class is the controller for the HomePage fxml file. This
+ * controller handles all the nodes and behaviors in the JavaFX scene. Users can access their
+ * follow list and team pages from here, as well as logging in and editing account info
+ *
+ * @author Gregorio Lozada & Andrew Wilson
+ * @version 1.0
+ * @since 10/18/2018
+ */
+
 package sample;
 
 import java.util.ArrayList;
@@ -8,10 +18,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;

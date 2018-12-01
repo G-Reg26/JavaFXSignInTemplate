@@ -1,3 +1,13 @@
+/**
+ * The LoginController class is the controller for the Login fxml file. This
+ * controller handles all the nodes and behaviors in the JavaFX scene. Users can sign into their
+ * accounts through this scene.
+ *
+ * @author Gregorio Lozada
+ * @version 1.0
+ * @since 10/18/2018
+ */
+
 package sample;
 
 import javafx.fxml.FXML;
@@ -5,7 +15,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
-public class SignInController extends Controller {
+public class LoginController extends Controller {
 
   @FXML
   private Text actionTarget;
@@ -18,8 +28,8 @@ public class SignInController extends Controller {
 
   @FXML
   private void initialize() {
-    textFields.add(userName);
-    textFields.add(password);
+    textFieldsToBeChecked.add(userName);
+    textFieldsToBeChecked.add(password);
   }
 
   /**
@@ -27,7 +37,7 @@ public class SignInController extends Controller {
    */
   @FXML
   private void handleSignInButtonAction() {
-    // If all text and password textFields are filled
+    // If all text and password textFieldsToBeChecked are filled
     if (checkFields()) {
       // If there is an account with the entered username and password
       if (checkUserAndPassword()) {
@@ -37,7 +47,7 @@ public class SignInController extends Controller {
         actionTarget.setText("Invalid username or password");
       }
     } else {
-      actionTarget.setText("Please fill all textFields");
+      actionTarget.setText("Please fill all textFieldsToBeChecked");
     }
   }
 

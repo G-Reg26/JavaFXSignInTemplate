@@ -1,3 +1,14 @@
+/**
+ * The News class is the blueprint used for team and event related news.
+ * This class holds the news text as a String and the date it was created as a Date object. This
+ * class also implements the StoredInformation interface, which is used for storing news info
+ * into a file.
+ *
+ * @author Jordan Sasek
+ * @version 1.0
+ * @since 11/6/2018
+ */
+
 package sample;
 
 import java.util.ArrayList;

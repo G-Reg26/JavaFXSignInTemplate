@@ -1,9 +1,12 @@
 /**
  * The Account class is the blueprint used for user accounts, containing information such as:
- * Account Type: The type of the account (Spectator, player, or manager) Name: user's name Username:
- * used to identify a user's account Password: user's password required to access their account
- * Teams Followed: The teams the user follows As well as implements the StoredInformation interface,
- * which is used for storing account info into a file.
+ * Account Type: The type of the account (Spectator, player, or manager)
+ * Name: user's name
+ * Username: used to identify a user's account
+ * Password: user's password required to access their account
+ * Teams Followed: The teams the user follows
+ * As well as implements the StoredInformation interface, which is used for storing account info
+ * into a file.
  *
  * @author Gregorio Lozada
  * @version 1.0
@@ -132,7 +135,7 @@ public class Account implements StoredInformation {
    * @param username username of team to find
    * @return account with the name matching username or null if nothing is found
    */
-  public static Account findUserByName(String username) {
+  public static Account findUserByUsername(String username) {
     // For every account in account list
     for (Account account : accounts) {
       // If account username matches username passed

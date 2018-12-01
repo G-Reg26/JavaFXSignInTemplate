@@ -1,7 +1,7 @@
 /**
  * The Contributor class is the blueprint used for user accounts that contribute to teams and
- * events, containing general account information along with: Account Type: The type of the account
- * (Spectator, player, or manager) Team: The team the user contributes to
+ * events, containing general account information along with:
+ * Team: The team the user contributes to
  *
  * @author Gregorio Lozada
  * @version 1.0

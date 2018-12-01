@@ -1,3 +1,13 @@
+/**
+ * The CreateEventController class is the controller for the CreateEvent fxml file. This
+ * controller handles all the nodes and behaviors in the JavaFX scene. Managers can create events
+ * for their team in this scene by filling in all text fields with the appropriate information.
+ *
+ * @author Gregorio Lozada
+ * @version 1.0
+ * @since 11/15/2018
+ */
+
 package sample;
 
 import java.text.ParseException;
@@ -76,13 +86,13 @@ public class CreateEventController extends Controller {
 
   @FXML
   private void initialize() {
-    // Add text field nodes to textFields
-    textFields.add(eventNameTextField);
-    textFields.add(locationTextField);
-    textFields.add(startTimeHourTextField);
-    textFields.add(startTimeMinuteTextField);
-    textFields.add(endTimeHourTextField);
-    textFields.add(endTimeMinuteTextField);
+    // Add text field nodes to textFieldsToBeChecked
+    textFieldsToBeChecked.add(eventNameTextField);
+    textFieldsToBeChecked.add(locationTextField);
+    textFieldsToBeChecked.add(startTimeHourTextField);
+    textFieldsToBeChecked.add(startTimeMinuteTextField);
+    textFieldsToBeChecked.add(endTimeHourTextField);
+    textFieldsToBeChecked.add(endTimeMinuteTextField);
 
     // Set on action to all menu items
     startAMMenuItem.setOnAction(event -> startMenuButton.setText(startAMMenuItem.getText()));

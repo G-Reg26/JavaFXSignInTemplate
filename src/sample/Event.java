@@ -1,3 +1,22 @@
+/**
+ * The Event class is the blueprint used for events, containing information such as:
+ * Organizer: The manager account that created the event
+ * Name: Name of the event
+ * Location: Location of event
+ * Start & End Date: Time range of event
+ * Description: Description of event (Admission costs, etc.)
+ * Event Score: Score of the event
+ * Teams Involved: Teams involved in the event
+ * Active: Status of event. When event is active scores can be edited
+ * As well as implements the StoredInformation interface, which is used for storing event info
+ * into a file.
+ *
+ * @author Jordan Moses
+ * @modified Gregorio Lozada
+ * @version 1.0
+ * @since 10/21/2018
+ */
+
 package sample;
 
 import java.text.SimpleDateFormat;

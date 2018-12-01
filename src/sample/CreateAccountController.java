@@ -1,7 +1,7 @@
 /**
- * The CreateAccountController class is the controller for the create account fxml file. This
- * controller handles all the nodes and behaviors in the JavaFX scene. Users can create their
- * account in this scene by filling in all text fields with the appropriate information.
+ * The CreateAccountController class is the controller for the CreateAccount fxml file. This
+ * controller handles all the nodes and behaviors in the JavaFX scene. Users can create/editing
+ * their account in this scene by filling in all text fields with the appropriate information.
  *
  * @author Gregorio Lozada
  * @version 1.0
@@ -23,7 +23,6 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
@@ -68,11 +67,11 @@ public class CreateAccountController extends Controller {
 
   @FXML
   public void initialize() {
-    textFields.add(name);
-    textFields.add(userName);
-    textFields.add(password);
-    textFields.add(confirmPassword);
-    textFields.add(teamName);
+    textFieldsToBeChecked.add(name);
+    textFieldsToBeChecked.add(userName);
+    textFieldsToBeChecked.add(password);
+    textFieldsToBeChecked.add(confirmPassword);
+    textFieldsToBeChecked.add(teamName);
 
     if (!editing) {
       menuButton.setText("Spectator");
@@ -158,7 +157,7 @@ public class CreateAccountController extends Controller {
   private void onSubmitButtonClicked() {
     // If not editing a profile
     if (!editing) {
-      // If all text and password textFields are filled
+      // If all text and password textFieldsToBeChecked are filled
       if (checkFields()) {
         // If account does not exist
         if (accountDoesNotExist()) {
@@ -172,8 +171,8 @@ public class CreateAccountController extends Controller {
           }
         }
       } else {
-        // Notify user to fill all text and password textFields
-        actionTarget.setText("Please fill all textFields");
+        // Notify user to fill all text and password textFieldsToBeChecked
+        actionTarget.setText("Please fill all textFieldsToBeChecked");
       }
     } else {
       // If all required fields pass checks
@@ -324,8 +323,8 @@ public class CreateAccountController extends Controller {
    */
   private boolean fieldsPass() {
     // If the username is already taken
-    if (Account.findUserByName(userName.getText()) != null &&
-        Account.findUserByName(userName.getText()) != Account.currentUser) {
+    if (Account.findUserByUsername(userName.getText()) != null &&
+        Account.findUserByUsername(userName.getText()) != Account.currentUser) {
       actionTarget.setText("Username is already taken");
       return false;
     }
@@ -338,7 +337,7 @@ public class CreateAccountController extends Controller {
         return false;
       } else {
         // If confirmPassword text field text does not equal password textfield
-        if (!confirmPassword.getText().equals(password.getText())) {
+        if (!confirmPasswords()) {
           actionTarget.setText("Passwords do not match");
           return false;
         }
@@ -383,7 +382,7 @@ public class CreateAccountController extends Controller {
    */
   public boolean accountDoesNotExist() {
     // If account exists
-    if (Account.findUserByName(userName.getText()) != null) {
+    if (Account.findUserByUsername(userName.getText()) != null) {
       actionTarget.setText("Username is already in use");
       return false;
     }
@@ -431,7 +430,7 @@ public class CreateAccountController extends Controller {
    * text fields in this scene. Created teams and accounts are then added to their respective lists
    */
   public void createAccount() {
-    // Get text from text textFields and create a new account with them
+    // Get text from text textFieldsToBeChecked and create a new account with them
     // Check account type
     switch (accountType) {
       case SPECTATOR:

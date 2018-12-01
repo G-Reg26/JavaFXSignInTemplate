@@ -60,7 +60,7 @@ public class FileManager {
       } else {
         readFiles(fileToCheck, contents);
       }
-    } catch (IOException ioException){
+    } catch (IOException ioException) {
       System.out.println("Input/Output exception caught");
     }
   }
@@ -116,6 +116,7 @@ public class FileManager {
   /**
    * Depending on what type of content is in the file to read read the file through specific
    * methods
+   *
    * @param fileToRead file to read
    * @param contents contents of the file to read
    */
@@ -151,13 +152,13 @@ public class FileManager {
 
     try {
       while ((st = br.readLine()) != null) {
-        if (st.equals("Comments:")) {
+        if (stringCheck(st, "Comments:")) {
           Comments tempComment = null;
           while (!(st = br.readLine()).equals("Comments end")) {
-            if (st.contains("Comment:")) {
+            if (stringCheck(st, "Comment:")) {
               tempComment = new Comments();
               tempComment.setText(st.substring(st.indexOf(":") + 1));
-            } else if (st.contains("Date:")) {
+            } else if (stringCheck(st, "Date:")) {
               tempComment.setDate(new Date(st.substring(st.indexOf(":") + 1)));
               tempTeam.getComments().add(tempComment);
             }
@@ -185,7 +186,7 @@ public class FileManager {
 
     try {
       while ((st = br.readLine()) != null) {
-        if (st.contains("Type:")) {
+        if (stringCheck(st, "Type:")) {
           String accountType = st.substring(st.indexOf(":") + 1);
           switch (accountType) {
             case "SPECTATOR":
@@ -201,13 +202,13 @@ public class FileManager {
               tempAccount.setType(AccountType.MANAGER);
               break;
           }
-        } else if (st.contains("User:")) {
+        } else if (stringCheck(st, "User:")) {
           tempAccount.setUsername(st.substring(st.indexOf(":") + 1));
-        } else if (st.contains("Name:")) {
+        } else if (stringCheck(st, "Name:")) {
           tempAccount.setName(st.substring(st.indexOf(":") + 1));
-        } else if (st.contains("Password:")) {
+        } else if (stringCheck(st, "Password:")) {
           tempAccount.setPassword(st.substring(st.indexOf(":") + 1));
-        } else if (st.contains("Team:")) {
+        } else if (stringCheck(st, "Team:")) {
           ((Contributor) tempAccount)
               .setTeam(Team.findTeamByName(st.substring(st.indexOf(":") + 1)));
 
@@ -216,7 +217,7 @@ public class FileManager {
           } else if (tempAccount instanceof Manager) {
             ((Manager) tempAccount).getTeam().setManager((Manager) tempAccount);
           }
-        } else if (st.contains("TeamRequested:")) {
+        } else if (stringCheck(st, "TeamRequested:")) {
           Team.findTeamByName(st.substring(st.indexOf(":") + 1))
               .addToRequestList((Player) tempAccount);
         } else if (st.equals("Teams followed:")) {
@@ -245,31 +246,32 @@ public class FileManager {
 
     try {
       while ((st = br.readLine()) != null) {
-        if (st.contains("Organizer:")) {
+        if (stringCheck(st, "Organizer:")) {
           tempEvent = new Event();
           tempEvent
-              .setOrganizer((Manager) Account.findUserByName(st.substring(st.indexOf(":") + 1)));
-          ((Manager) Account.findUserByName((st.substring(st.indexOf(":") + 1)))).
+              .setOrganizer(
+                  (Manager) Account.findUserByUsername(st.substring(st.indexOf(":") + 1)));
+          ((Manager) Account.findUserByUsername((st.substring(st.indexOf(":") + 1)))).
               getEventsOrganized().add(tempEvent);
-        } else if (st.contains("Name:")) {
+        } else if (stringCheck(st, "Name:")) {
           tempEvent.setName(st.substring(st.indexOf(":") + 1));
-        } else if (st.contains("Location:")) {
+        } else if (stringCheck(st, "Location:")) {
           tempEvent.setLocation(st.substring(st.indexOf(":") + 1));
-        } else if (st.contains("StartDate:")) {
+        } else if (stringCheck(st, "StartDate:")) {
           tempEvent.setStartDate(new Date(st.substring(st.indexOf(":") + 1)));
-        } else if (st.contains("EndDate:")) {
+        } else if (stringCheck(st, "EndDate:")) {
           tempEvent.setEndDate(new Date(st.substring(st.indexOf(":") + 1)));
-        } else if (st.contains("Description:")) {
+        } else if (stringCheck(st, "Description:")) {
           tempEvent.setDescription(st.substring(st.indexOf(":") + 1));
-        } else if (st.contains("Team1:") || st.contains("Team2:")) {
+        } else if (stringCheck(st, "Team1:") || stringCheck(st, "Team2:")) {
           tempEvent.setTeamsInvolved(Team.findTeamByName(st.substring(st.indexOf(":") + 1)));
-        } else if (st.contains("Team1Score:")) {
+        } else if (stringCheck(st, "Team1Score:")) {
           tempEvent.getEventScore().
               setScore(0, Integer.parseInt(st.substring(st.indexOf(":") + 1)));
-        } else if (st.contains("Team2Score:")) {
+        } else if (stringCheck(st, "Team2Score:")) {
           tempEvent.getEventScore().
               setScore(1, Integer.parseInt(st.substring(st.indexOf(":") + 1)));
-        } else if (st.contains("Active:")) {
+        } else if (stringCheck(st, "Active:")) {
           if (st.substring(st.indexOf(":") + 1).equals("true")) {
             tempEvent.setActive(true);
           } else {
@@ -296,10 +298,10 @@ public class FileManager {
 
     try {
       while ((st = br.readLine()) != null) {
-        if (st.contains("News:")) {
+        if (stringCheck(st, "News:")) {
           tempNews = new News();
           tempNews.setNews(st.substring(st.indexOf(":") + 1));
-        } else if (st.contains("Date:")) {
+        } else if (stringCheck(st, "Date:")) {
           tempNews.setDate(new Date(st.substring(st.indexOf(":") + 1)));
         } else if (st.equals("Team:")) {
           while (!(st = br.readLine()).equals("Team end")) {
@@ -310,7 +312,22 @@ public class FileManager {
         }
       }
     } catch (IOException ioException) {
-      System.out.println("Input/Output exception caught");
+      System.out.println("Failed to read file");
+    }
+  }
+
+  /**
+   * Checks if beginning of string matches the desired string
+   *
+   * @param stringToBeChecked string that will be checked
+   * @param desiredString string desired
+   * @return false if the beginning of stringToBeChecked does not match desiredString
+   */
+  private boolean stringCheck(String stringToBeChecked, String desiredString) {
+    if (stringToBeChecked.length() >= desiredString.length()) {
+      return stringToBeChecked.substring(0, desiredString.length()).equals(desiredString);
+    } else {
+      return false;
     }
   }
 

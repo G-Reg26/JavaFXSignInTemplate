@@ -1,3 +1,15 @@
+/**
+ * The TeamPageController class is the controller for the TeamPage fxml file. This
+ * controller handles all the nodes and behaviors in the JavaFX scene. Here you can view a team's
+ * events, news headlines, members list, and comments. If this is not the current user's
+ * team they may follow/unfollow the current team or if the current user is the team's manager
+ * they can choose to edit it from here.
+ *
+ * @author Gregorio Lozada
+ * @version 1.0
+ * @since 10/21/2018
+ */
+
 package sample;
 
 import java.util.ArrayList;
@@ -12,7 +24,6 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;

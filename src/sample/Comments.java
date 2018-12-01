@@ -1,3 +1,12 @@
+/**
+ * The Comment class is the blueprint used for user submitted comments left on team pages.
+ * This class holds the comment text as a String and the date it was posted as a Date object.
+ *
+ * @author Jordan Sasek
+ * @version 1.0
+ * @since 11/8/2018
+ */
+
 package sample;
 
 import java.util.Date;

@@ -1,3 +1,15 @@
+/**
+ * The EventPageController class is the controller for the EventPage fxml file. This
+ * controller handles all the nodes and behaviors in the JavaFX scene. Spectators can view an
+ * event's status and scores for the teams involved. If the current user is the event's organizer
+ * and the event is currently ongoing, or has ended, they can update scores as well as deactivate
+ * the event.
+ *
+ * @author Jordan Moses
+ * @version 1.0
+ * @since 11/22/2018
+ */
+
 package sample;
 
 import java.text.SimpleDateFormat;
@@ -63,8 +75,11 @@ public class EventPageController extends Controller {
 
   @FXML
   private void initialize() {
+    Date today = new Date();
+
     // If current user is not event organizer or event is not active
     if (Account.currentUser != Event.currentEvent.getOrganizer() ||
+        today.before(Event.currentEvent.getStartDateDate()) ||
         !Event.currentEvent.isActive()) {
       deactivateButton.setDisable(true);
       deactivateButton.setVisible(false);
@@ -84,8 +99,6 @@ public class EventPageController extends Controller {
     eventName.setText(Event.currentEvent.getName());
     eventAttributesLabel.setText(Event.currentEvent.getLocation() + ", " +
         dateFormatter.format(Event.currentEvent.getStartDateDate()) + ", ");
-
-    Date today = new Date();
 
     if (today.before(Event.currentEvent.getStartDateDate())) {
       eventAttributesLabel.setText(eventAttributesLabel.getText() + "Upcoming");
@@ -117,7 +130,7 @@ public class EventPageController extends Controller {
    */
   @FXML
   private void onBackButtonClicked() {
-      changeScene(prevSceneKey);
+    changeScene(prevSceneKey);
   }
 
   /**

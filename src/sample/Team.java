@@ -1,3 +1,18 @@
+/**
+ * The Team class is the blueprint used for teams, containing information such as:
+ * Manager: The manager account that created the team
+ * Name: Name of the team
+ * Members: Members of the team
+ * JoinRequests: Requests to join team
+ * Comments: Comments left on team's page
+ * As well as implements the StoredInformation interface, which is used for storing team info
+ * into a file.
+ *
+ * @author Gregorio Lozada
+ * @version 1.0
+ * @since 10/21/2018
+ */
+
 package sample;
 
 import java.awt.image.BufferedImage;

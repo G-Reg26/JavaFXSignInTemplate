@@ -1,3 +1,13 @@
+/**
+ * The Controller class is the base class that all controllers inherit from and defines methods that
+ * many if not all controllers implement such as changing scenes and checking all text fields are
+ * all filled.
+ *
+ * @author Gregorio Lozada
+ * @version 1.0
+ * @since 10/18/2018
+ */
+
 package sample;
 
 import java.io.IOException;
@@ -13,13 +23,13 @@ import javafx.stage.Stage;
 
 public abstract class Controller {
 
-  protected ArrayList<TextField> textFields = new ArrayList<>();
+  protected ArrayList<TextField> textFieldsToBeChecked = new ArrayList<>();
 
   protected Stage popUpStage;
 
   protected FileChooser fileChooser = new FileChooser();
 
-  /***
+  /**
    * Loads and sets the scene of the main stage
    *
    * @param sceneName used as a key to get the fxml URL of the desired scene to load
@@ -36,17 +46,18 @@ public abstract class Controller {
       // Load scene using root
       Main.loadScene(root);
     } catch (IOException ioException) {
-      System.out.println("Input/Output exception caught");
+      MessageBoxController.messageString = "Failed to load scene.";
+      loadPopUpScene("FXMLDocs/MessageBox.fxml", "");
     }
   }
 
-  /***
-   * Check to see all text textFields in scene are all filled
+  /**
+   * Check to see all text textFieldsToBeChecked in scene are all filled
    *
    * @return true if all fields are filled in, false if there is at least on empty field
    */
   protected boolean checkFields() {
-    for (TextField node : textFields) {
+    for (TextField node : textFieldsToBeChecked) {
       //If a textfield node is empty and enabled
       if (node.getText().equals("") && !node.isDisabled()) {
         return false;
@@ -56,7 +67,7 @@ public abstract class Controller {
     return true;
   }
 
-  /***
+  /**
    * This method loads in a pop up scene
    *
    * @param fxmlURL the URL of the fxml file that will be used for the scene
@@ -67,8 +78,8 @@ public abstract class Controller {
 
     try {
       root = FXMLLoader.load(getClass().getResource(fxmlURL));
-    } catch (IOException ioException){
-      System.out.println("Input/Output exception caught");
+    } catch (IOException ioException) {
+      System.out.println("Failed to load pop up scene");
     }
 
     Scene popUpScene = new Scene(root);
@@ -81,23 +92,12 @@ public abstract class Controller {
   }
 
   /**
-   * This method takes in two strings converts them to all uppercase and checks if they match
-   *
-   * @param st1 string to be compared
-   * @param st2 string to be compared
-   * @return true if strings match, false if they do not
-   */
-  protected boolean stringsMatch(String st1, String st2) {
-    return st1.toUpperCase().equals(st2.toUpperCase());
-  }
-
-  /**
    * Makes sure file is a supported image type
    *
    * @param filename name of file to check
    * @return if file is a png return true false if otherwise
    */
-  protected boolean supportedImageType(String filename){
+  protected boolean supportedImageType(String filename) {
     return (filename.substring(filename.indexOf(".") + 1).equals("png"));
   }
 
@@ -112,7 +112,7 @@ public abstract class Controller {
    */
   protected void setTeamSearchBarDropDownMenu(TextField textField, ContextMenu contextMenu,
       float xOffset,
-      float yOffset){
+      float yOffset) {
 
     // This handles whenever the user types in the text field
     textField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -149,5 +149,16 @@ public abstract class Controller {
         contextMenu.hide();
       }
     });
+  }
+
+  /**
+   * This method takes in two strings converts them to all uppercase and checks if they match
+   *
+   * @param st1 string to be compared
+   * @param st2 string to be compared
+   * @return true if strings match, false if they do not
+   */
+  private boolean stringsMatch(String st1, String st2) {
+    return st1.toUpperCase().equals(st2.toUpperCase());
   }
 }

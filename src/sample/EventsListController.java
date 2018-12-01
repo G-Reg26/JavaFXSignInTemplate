@@ -1,3 +1,15 @@
+/**
+ * The EventListController class is the controller for the EventsList fxml file. This
+ * controller handles all the nodes and behaviors in the JavaFX scene. When accessing from the
+ * homepage guests can view all events, while other account tiers can view events that involve their
+ * own team or teams from their follow list. Accessing from a team's page the list will contain
+ * all events where said team is involved.
+ *
+ * @author Jake Sherman
+ * @version 1.0
+ * @since 11/22/2018
+ */
+
 package sample;
 
 import java.util.Collections;

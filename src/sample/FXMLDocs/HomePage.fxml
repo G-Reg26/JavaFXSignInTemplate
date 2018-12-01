@@ -23,7 +23,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" snapToPixel="false" stylesheets="@../CSSDocs/homePage.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.HomePageController">
   <left>
-    <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="360.0" prefWidth="130.0" scaleShape="false" snapToPixel="false" spacing="8.0" BorderPane.alignment="TOP_CENTER">
+    <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="360.0" prefWidth="130.0" scaleShape="false" snapToPixel="false" spacing="10.0" BorderPane.alignment="TOP_CENTER">
       <children>
         <StackPane prefHeight="150.0" prefWidth="200.0">
           <children>
@@ -38,7 +38,7 @@
             </ImageView>
           </children>
         </StackPane>
-        <Label fx:id="userName" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="100.0" text="[Username]" textAlignment="CENTER" VBox.vgrow="ALWAYS">
+        <Label fx:id="userName" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="100.0" text="[Username]" textAlignment="CENTER">
           <font>
             <Font name="System Bold" size="18.0" />
           </font>
