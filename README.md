@@ -5,15 +5,21 @@ This program is a recreational sports league management system. Users can create
 different tiers, spectator, player, or team manager. All accounts can follow teams, view 
 teams/events, and comment on team pages, players can request to join teams, and managers 
 can set up teams and events, as well as update their team's scores.
-# Installation for Intellij
+# Installation for IntelliJ
 1. Download the zip of this project and extract to desired directory
-2. Create a basic JavaFX project
-3. Delete src folder in base project
-![alt text](https://github.com/G-Reg26/SoftwareEngineeringFundamentalsProject/blob/master/src/sample/Images/WhereToMoveFiles.png)
-4. Copy all the contents of the unzipped project and paste it into base project folder
-5. Navigate to Images folder in the unzipped project (src\sample\Images)
-![alt text](https://github.com/G-Reg26/SoftwareEngineeringFundamentalsProject/blob/master/src/sample/Images/WhereToMoveProfilePics.png)
-6. Copy the AccountProfilePics and TeamProfilePics folders and paste it into the Images folder in the base project
+2. Click Import Project from splash screen or File->New->Project from Existing Source Code
+3. Select extracted folder and click OK
+4. Click Next->Name Project and set location->Click Next until Finish button appears->Click Finish 
+5. Navigate to Main class(src\sample\Main)
+6. Right click Main class and click Run 'Main.main()'
+# Installation for Eclipse
+1. Download the zip of this project and extract to desired directory
+2. Click File->Import
+3. Select General->Projects from Folder or Archive
+4. Click Directory, select extracted folder, and click OK
+5. Click Finish
+6. Navigate to Main class(src\sample\Main)
+7. Click Run button
 # Known Issues/Limitations
 - Text files that back up data can be manipulated externally
 - No verification for certain actions:
