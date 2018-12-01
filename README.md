@@ -9,6 +9,7 @@ can set up teams and events, as well as update their team's scores.
 1. Download the zip of this project and extract to desired directory
 2. Create a basic JavaFX project
 3. Delete src folder in base project
+![alt text](https://github.com/G-Reg26/SoftwareEngineeringFundamentalsProject/blob/master/src/sample/Images/WhereToMoveFiles.png)
 4. Copy all the contents of the unzipped project and paste it into base project folder
 5. Navigate to Images folder in the unzipped project (src\sample\Images)
 6. Copy the AccountProfilePics and TeamProfilePics folders and paste it into the Images folder in the base project
