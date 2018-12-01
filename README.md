@@ -10,6 +10,8 @@ can set up teams and events, as well as update their team's scores.
 2. Create a basic JavaFX project
 3. Delete src folder in base project
 4. Copy all the contents of the unzipped project and paste it into base project folder
+5. Navigate to Images folder in the unzipped project (src\sample\Images)
+6. Copy the AccountProfilePics and TeamProfilePics folders and paste it into the Images folder in the base project
 # Known Issues/Limitations
 - Text files that back up data can be manipulated externally
 - No verification for certain actions:
