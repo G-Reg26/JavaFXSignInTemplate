@@ -15,7 +15,7 @@ can set up teams and events, as well as update their team's scores.
 # Installation for Eclipse
 1. Download the zip of this project and extract to desired directory
 2. Click File->Import
-3. Select General->Projects from Folder or Archive
+3. Select General->Projects from Folder or Archive then click Next
 4. Click Directory, select extracted folder, and click OK
 5. Click Finish
 6. Navigate to Main class(src\sample\Main)
