@@ -14,7 +14,7 @@ can set up teams and events, as well as update their team's scores.
 2. Click Import Project from splash screen or File->New->Project from Existing Source Code
 3. Select extracted folder and click OK
 4. Click Next->Name Project and set location->Click Next until Finish button appears->Click Finish 
-5. Navigate to Main class(src\sample\Main)
+5. Navigate to Main class (src\sample\Main)
 6. Right click Main class and click Run 'Main.main()'
 
 # Installation for Eclipse
@@ -23,7 +23,7 @@ can set up teams and events, as well as update their team's scores.
 3. Select General->Projects from Folder or Archive then click Next
 4. Click Directory, select extracted folder, and click OK
 5. Click Finish
-6. Navigate to Main class(src\sample\Main)
+6. Navigate to Main class (src\sample\Main)
 7. Click Run button
 
 # Known Issues/Limitations
