@@ -5,7 +5,8 @@ Back End:
 - Gregorio Lozada
 - Jake Sherman
 - Jordan Moses
-- Jordan Sasek</br>Front End:
+- Jordan Sasek</br></br>
+Front End:
 - Guilherme Pereira
 - Andrew Wilson
 # About
