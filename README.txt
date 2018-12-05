@@ -40,3 +40,6 @@ Author: Gregorio Lozada
 Java Code: Gregorio Lozada, Jake Sherman, Jordan Moses, Jordan Sasek
 FXML Code: Guilherme Pereira, Andrew Wilson
 CSS Code: Guilherme Pereira
+
+#GitHub Repo
+https://github.com/G-Reg26/SoftwareEngineeringFundamentalsProject
