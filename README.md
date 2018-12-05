@@ -1,12 +1,14 @@
 # Active 364's Sports Competition System
 Semester long project for the course Software Engineering Fundamentals
 # Team Members
-Gregorio Lozada</br>
-Andrew Wilson</br>
-Jake Sherman</br>
-Jordan Moses</br>
-Jordan Sasek</br>
-Guilherme Pereira
+Back End:
+- Gregorio Lozada
+- Jake Sherman
+- Jordan Moses
+- Jordan Sasek</br>
+Front End:
+- Guilherme Pereira
+- Andrew Wilson
 # About
 This program is a recreational sports league management system. Users can create accounts of 
 different tiers, spectator, player, or team manager. All accounts can follow teams, view 
